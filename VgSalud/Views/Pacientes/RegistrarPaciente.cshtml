@@ -945,7 +945,7 @@
             $.each(response, function (index, value) {
                 if (value.CodDist == '@ViewBag.coddistrito') {
                     $('<option>').val(value.CodDist).text(value.NomDist).appendTo(select);
-                    $('#CodDist > option[value="D1277"]').attr('selected', true);  
+                    $('#CodDist > option[value="D1277"]').attr('selected', true);    
                 } else {
                    
                     $('<option>').val('D1277').text(value.NomDist).appendTo(select);
