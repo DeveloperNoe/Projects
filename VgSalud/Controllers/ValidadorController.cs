@@ -332,7 +332,6 @@ namespace VgSalud.Controllers
 
                     }
                     ViewBag.cuenta = BuscarCuenta(val.cuenta);
-                    ViewBag.paciente = Usp_Paciente_por_Cuenta(val.cuenta);
                     return View(val);
                 }
 
