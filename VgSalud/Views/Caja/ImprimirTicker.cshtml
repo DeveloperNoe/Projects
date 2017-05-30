@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "ImprimirTicker";
+    Layout = null;
+    var cabecera = (List<VgSalud.Models.E_Caja>)ViewBag.cabecera;
+    var detalle = (List<VgSalud.Models.E_Caja>)ViewBag.detalle;
+}
+          
+
+
+<div class="col-md-12">
+    <div class="col-md-4"></div>
+
+    <div class="col-md-4">
+        <table>
+            @foreach (var item in cabecera)
+            {
+                <tr>
+                    <th>@item</th>
+                </tr>
+            }
+
+            
+           
+        </table>
+    </div>
+
+    <div class="col-md-4"></div>
+</div>
+
+
+
+
+
+
+
+
