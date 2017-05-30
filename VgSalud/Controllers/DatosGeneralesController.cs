@@ -254,7 +254,6 @@ namespace VgSalud.Controllers
                 {
                     try
                     {
-                       
                         da.CommandType = CommandType.StoredProcedure;
                         da.Parameters.AddWithValue("@IGV", dat.igv);
                         da.Parameters.AddWithValue("@TIPO_CAMBIO", dat.Tipo_Cambio);

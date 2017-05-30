@@ -27,12 +27,11 @@ namespace VgSalud.Controllers
         public ActionResult RegistrarPaciente()
         {
             string sede = Session["codSede"].ToString();
-            var util = new DatosGeneralesController().LISTA_DISTRITO_DEFAULT(sede).FirstOrDefault();
-            ViewBag.coddistrito = util.CodDist; 
+            var util = new DatosGeneralesController().LISTA_DISTRITO_DEFAULT(sede).FirstOrDefault(); 
             DatosGeneralesController da = new DatosGeneralesController();
             E_Datos_Generales d = da.listadatogenerales().FirstOrDefault();
             ViewBag.muestraAnecedente = d.MUESTRA_ANTECEDENTE;
-
+            ViewBag.coddistrito = util.CodDist; 
             DocumentoIdentidadController DocIden = new DocumentoIdentidadController();
             ViewBag.ListaDocumentoIdentidad = new SelectList(DocIden.ListadoDocumentoIdentidad().Where(x => x.Estado == true).ToList(), "CodDocIdent", "NomDocIdent");
 
