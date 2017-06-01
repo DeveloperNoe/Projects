@@ -2985,17 +2985,16 @@ namespace VgSalud.Controllers
         }
 
 
-        public ActionResult ImprimirTicker(int CodCaja)
+        public ActionResult ImprimirTicket(int CodCaja)
         {
-          var  cm = ImprimeCajaCabecera(CodCaja);
-          var cd = ImprimeCajaDetalle(CodCaja);
+            var cm = ImprimeCajaCabecera(CodCaja);
+            var cd = ImprimeCajaDetalle(CodCaja);
 
             //    Response.Write("<script language='JavaScript' type ='text/javascript'>" +
             //" window.open('../../Cuentas/VerificaCuenta/" + c.CodCue + "', '_blank'); </script>");
             ViewBag.cabecera = cm;
-            ViewBag.detalle = cd; 
-            return View(); 
-
+            ViewBag.detalle = cd;
+            return View();
         }
         
         public ActionResult ImprimirCaja(string id, int CodCaja)

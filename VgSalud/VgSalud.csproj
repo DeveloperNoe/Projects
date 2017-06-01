@@ -5451,7 +5451,7 @@
     <Content Include="Views\Pacientes\InformeGenerada.cshtml" />
     <Content Include="Views\Pacientes\BusquedaPaciente.cshtml" />
     <Content Include="Views\DatosGenerales\PermisosAdmin.cshtml" />
-    <Content Include="Views\Caja\ImprimirTicker.cshtml" />
+    <Content Include="Views\Caja\ImprimirTicket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

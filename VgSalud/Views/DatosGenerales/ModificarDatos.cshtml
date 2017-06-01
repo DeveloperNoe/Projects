@@ -66,36 +66,8 @@
                                     @Html.ValidationMessageFor(model => model.Tipo_Cambio, "", new { @class = "text-danger" })
 
                                 </div>
+
                             </div>
-
-                            <div class="form-group">
-                                <div class="col-md-3">
-                                    <label>Mostrar antecedentes en paciente</label>
-                                </div>
-                                <div class="col-md-9">
-
-                                    @Html.CheckBoxFor(model => model.MUESTRA_ANTECEDENTE)
-                                    @Html.ValidationMessageFor(model => model.MUESTRA_ANTECEDENTE, "", new { @class = "text-danger" })
-
-                                </div>
-                                <br /><br />
-                            </div>
-                            <br />
-                            <div class="form-group">
-                                <br /><br />
-                                <div class="col-md-3">
-                                    <label>Atender solo facturas pagadas</label>
-                                </div>
-                                <div class="col-md-9">
-
-                                    @Html.CheckBoxFor(model => model.ATENCIONESPAGADAS)
-                                    @Html.ValidationMessageFor(model => model.ATENCIONESPAGADAS, "", new { @class = "text-danger" })
-
-                                </div>
-                                <br />
-                            </div>
-
-
 
                         </div>
                         <div class="col-md-6">
@@ -110,57 +82,86 @@
 
                                 </div>
                             </div>
-
-                            <div class="form-group">
-
-                                <div class="col-md-3">
-                                    <label>Desea seguir realizando Atenciones Programadas ?</label>
-                                </div>
-                                <div class="col-md-9">
-
-                                    @Html.CheckBoxFor(model => model.PREGXATENCIONPROGRAMADAS)
-
-
-                                </div>
-                                <br />
-                            </div>
-                            <br />
-                            <div class="form-group">
-                                <br /><br />
-                                <div class="col-md-3">
-                                    <label>Desea seguir realizando Atenciones No Programadas ?</label>
-                                </div>
-                                <div class="col-md-9">
-                                    @Html.CheckBoxFor(model => model.PREGXATENCIONNOPROGRAMADAS)
-                                </div>
-                            </div>
-
-                            <br />
-                            <div class="form-group">
-                                <br /><br />
-                                <div class="col-md-3">
-                                    <label>Desea Generar Cuenta Automatico?</label>
-                                </div>
-                                <div class="col-md-9">
-                                    @Html.CheckBoxFor(model => model.GENERARCUENTAAUTO)
-                                </div>
-                            </div>
-
                         </div>
 
-
-
-
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <div class="col-md-6">
-                                    <center>
-                                        <button type="submit" value="Modificar" style="background-color:#13D003; border:0" class="btn btn-danger" id="Modificar">Modificar</button>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
                     </fieldset>
+
+                    
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <label>Mostrar antecedentes en paciente</label>
+                            </div>
+                            <div class="col-md-9">
+
+                                @Html.CheckBoxFor(model => model.MUESTRA_ANTECEDENTE)
+                                @Html.ValidationMessageFor(model => model.MUESTRA_ANTECEDENTE, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                        <br /><br />
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <label>Atender solo facturas pagadas</label>
+                            </div>
+                            <div class="col-md-9">
+
+                                @Html.CheckBoxFor(model => model.ATENCIONESPAGADAS)
+                                @Html.ValidationMessageFor(model => model.ATENCIONESPAGADAS, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+               
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <label>Desea seguir realizando Atenciones Programadas ?</label>
+                            </div>
+                            <div class="col-md-9">
+
+                                @Html.CheckBoxFor(model => model.PREGXATENCIONPROGRAMADAS)
+                            
+
+                            </div>
+                            <br /><br />
+                        </div>
+                        <br /><br />
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <label>Desea seguir realizando Atenciones No Programadas ?</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.CheckBoxFor(model => model.PREGXATENCIONNOPROGRAMADAS)
+                            </div>
+                        </div>
+                        <br /><br />
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <label>Desea Generar Cuenta Automatico?</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.CheckBoxFor(model => model.GENERARCUENTAAUTO)
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <label></label>
+                    <br /><br />
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <center>
+                                    <button type="submit" value="Modificar" style="background-color:#13D003; border:0" class="btn btn-danger" id="Modificar">Modificar</button>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </form>
 
