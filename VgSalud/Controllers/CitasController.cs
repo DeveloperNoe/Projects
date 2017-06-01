@@ -979,7 +979,6 @@ namespace VgSalud.Controllers
                     var result = ((evalua.Precio / decimal.Parse("1.18")) * dat.igv);
                     tari.igv =  decimal.Round(result,2);
                     tari.total = decimal.Round(tari.Precio + tari.igv,2);
-
                 }
                 else {
                     tari.Precio = evalua.Precio;
@@ -992,7 +991,6 @@ namespace VgSalud.Controllers
                 tari.igv = 0;
                 tari.total = 0;
             }
-
             tari.CodTipTar = evalua1.CodTipTar;
             tari.TiempoApox = evalua1.TiempoApox;
 
@@ -1215,14 +1213,22 @@ namespace VgSalud.Controllers
 
                                         tr.Commit();
 
-                                        if (util.PREGXATENCIONPROGRAMADAS)
+                                        if (util.GENERARCUENTAAUTO)
                                         {
-                                            ViewBag.activaAlerta = 1;
+                                            return RedirectPermanent("~/Caja/RegistrarCaja?id=" + Resu);
                                         }
-                                        else
-                                        {
-                                           return RedirectPermanent("~/Cuentas/VerificaCuenta/" + Resu);
+                                        else {
+                                            if (util.PREGXATENCIONPROGRAMADAS)
+                                            {
+                                                ViewBag.activaAlerta = 1;
+                                            }
+                                            else
+                                            {
+                                                return RedirectPermanent("~/Cuentas/VerificaCuenta/" + Resu);
+                                            }
+
                                         }
+                                        
                                         ViewBag.historia = c.Historia;
                                         ViewBag.cuenta = Resu;
                                     }
