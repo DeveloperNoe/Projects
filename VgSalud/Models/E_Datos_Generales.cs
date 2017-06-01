@@ -14,6 +14,7 @@ namespace VgSalud.Models
         public bool ATENCIONESPAGADAS { get; set; }
         public bool PREGXATENCIONPROGRAMADAS { get; set; }
         public bool PREGXATENCIONNOPROGRAMADAS { get; set; }
+        public bool GENERARCUENTAAUTO  { get; set; }
         public string CodDist { get; set; }
         public string NomDist { get; set; }
         public string CODSEDE { get; set; }

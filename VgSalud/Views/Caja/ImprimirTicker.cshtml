@@ -6,6 +6,8 @@
     var detalle = (List<VgSalud.Models.E_CajaDetalle>)ViewBag.detalle;
     decimal total = 0;
     decimal subtotal = 0; decimal igv = 0; decimal totalg = 0;
+    var letra = "";
+    var soles = ""; 
 }
 
 <style>
@@ -62,6 +64,8 @@
                 </div>
                 @foreach (var item in cabecera)
                 {
+                    letra = item.PrecioLetra;
+                    soles = item.DescTipMon;
                     <table>
                         <tr>
                             <td><label class="letra">Fecha</label></td>
@@ -85,7 +89,7 @@
                         </tr>
 
                     </table>
-
+       
                 }
 
 
@@ -103,6 +107,7 @@
                                         <td style="width: 100%;"><label class="letra">@item1.Cantidad - @item1.NomTar</label></td>
                                         <td style="padding-left: 36px;width: 100%;"><label class="letra">@item1.PUnit</label></td>
                                     </tr>
+                                    total += item1.PUnit;
                                 }
 
 
@@ -161,7 +166,9 @@
 
         </div>
 
-        <div class="col-md-3"></div>
+        <div class="col-md-3">
+         
+        </div>
     </div>
 
 </div>

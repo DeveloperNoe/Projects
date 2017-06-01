@@ -41,7 +41,7 @@ namespace VgSalud.Controllers
                             }
                             datos.PREGXATENCIONPROGRAMADAS = dr["PREGXATENCIONPROGRAMADAS"] is DBNull ? false : Convert.ToBoolean(dr["PREGXATENCIONPROGRAMADAS"]);
                             datos.PREGXATENCIONNOPROGRAMADAS = dr["PREGXATENCIONNOPROGRAMADAS"] is DBNull ? false : Convert.ToBoolean(dr["PREGXATENCIONNOPROGRAMADAS"]);
-
+                            datos.GENERARCUENTAAUTO = dr["GENERARCUENTAAUTO"] is DBNull ? false : Convert.ToBoolean(dr["GENERARCUENTAAUTO"]); 
                             Lista.Add(datos);
                         }
                         con.Close();
@@ -107,7 +107,7 @@ namespace VgSalud.Controllers
                             }
                             get.PREGXATENCIONPROGRAMADAS = dr["PREGXATENCIONPROGRAMADAS"] is DBNull ? false : Convert.ToBoolean(dr["PREGXATENCIONPROGRAMADAS"]);
                             get.PREGXATENCIONNOPROGRAMADAS = dr["PREGXATENCIONNOPROGRAMADAS"] is DBNull ? false : Convert.ToBoolean(dr["PREGXATENCIONNOPROGRAMADAS"]);
-                            
+                            get.GENERARCUENTAAUTO = dr["GENERARCUENTAAUTO"] is DBNull ? false : Convert.ToBoolean(dr["GENERARCUENTAAUTO"]);
 
                         }
                         con.Close();
@@ -261,6 +261,7 @@ namespace VgSalud.Controllers
                         da.Parameters.AddWithValue("@ATENCIONESPAGADAS", dat.ATENCIONESPAGADAS);
                         da.Parameters.AddWithValue("@ATENCIONPROGRAMADAS", dat.PREGXATENCIONPROGRAMADAS);
                         da.Parameters.AddWithValue("@ATENCIONNOPROGRAMADAS", dat.PREGXATENCIONNOPROGRAMADAS);
+                        da.Parameters.AddWithValue("@GENERARCUENTAAUTO", dat.GENERARCUENTAAUTO); 
                         if (da.ExecuteNonQuery() > 0)
                         {
                             using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["VG_SALUD"].ConnectionString))

@@ -120,7 +120,7 @@
                
                         <div class="form-group">
                             <div class="col-md-3">
-                                <label>Mostrar mensaje seguir realizando Atenciones Programadas ?</label>
+                                <label>Desea seguir realizando Atenciones Programadas ?</label>
                             </div>
                             <div class="col-md-9">
 
@@ -136,14 +136,18 @@
                                 <label>Desea seguir realizando Atenciones No Programadas ?</label>
                             </div>
                             <div class="col-md-9">
-
                                 @Html.CheckBoxFor(model => model.PREGXATENCIONNOPROGRAMADAS)
-          
-
                             </div>
                         </div>
-           
-
+                        <br /><br />
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <label>Desea Generar Cuenta Automatico?</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.CheckBoxFor(model => model.GENERARCUENTAAUTO)
+                            </div>
+                        </div>
 
                     </div>
 
