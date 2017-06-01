@@ -3,35 +3,171 @@
     ViewBag.Title = "ImprimirTicker";
     Layout = null;
     var cabecera = (List<VgSalud.Models.E_Caja>)ViewBag.cabecera;
-    var detalle = (List<VgSalud.Models.E_Caja>)ViewBag.detalle;
+    var detalle = (List<VgSalud.Models.E_CajaDetalle>)ViewBag.detalle;
+    decimal total = 0;
+    decimal subtotal = 0; decimal igv = 0; decimal totalg = 0;
 }
-          
+
+<style>
+    .letra {
+        font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+        font-size: 14px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 0;
+        line-height: 18.4px;
+    }
+</style>
 
 
-<div class="col-md-12">
-    <div class="col-md-4"></div>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ticket</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Content/Scripts/jquery.PrintArea.js"></script>
+    @*<script>
+        $(document).ready(function () {
+            var ancho = $(window).width();
+            var alto = $(window).height();
 
-    <div class="col-md-4">
-        <table>
-            @foreach (var item in cabecera)
-            {
-                <tr>
-                    <th>@item</th>
-                </tr>
-            }
+            var options = { mode: "popup", popHt: alto, popWd: ancho, popX: 0, popY: 0, popTitle: "Ticket", popClose: false };
+            $("div#imprime").printArea(options);
 
-            
-           
-        </table>
+        });
+    </script>*@
+</head>
+
+<div class="row">
+    <br /><br />
+    <div class="col-md-12" style="padding-left:150px">
+
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <table>
+                        <tr>
+                            <td colspan="2" style="margin-left:15px"><label class="letra">Jr. Joaquín Valverde 299 (Av. San Borja sur 801)</label></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><label class="letra" style="margin-left: 100px;">R.U.C :12332142608</label></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><label class="letra" style="margin-left: 100px;">Telefono :2333222</label></td>
+                        </tr>
+                    </table>
+
+                </div>
+                @foreach (var item in cabecera)
+                {
+                    <table>
+                        <tr>
+                            <td><label class="letra">Fecha</label></td>
+                            <td><label class="letra">: @item.FechaEmision.ToShortDateString() - @item.HoraEmision</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="letra">Cajera</label></td>
+                            <td><label class="letra">: @item.UsuCrea</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="letra">Secuencia</label></td>
+                            <td><label class="letra">: @item.CodCaja</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="letra">Nro Serie</label></td>
+                            <td><label class="letra">: @item.Serie - N°@item.NumDoc</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="letra">Paciente</label></td>
+                            <td><label class="letra">: @item.NomPac - (@item.Historia)</label></td>
+                        </tr>
+
+                    </table>
+
+                }
+
+
+                <div class="col-md-12">
+                    <div class="col-md-6" style="border-bottom-style:dotted;border-top-style:dotted">
+                        <div class="row">
+                            <table align="center">
+                                <tr>
+                                    <td style="width: 100%;"><label class="letra">Cantid. Tarifas</label></td>
+                                    <td style="padding-left: 22px;width: 100%;"><label class="letra">Subtotal</label></td>
+                                </tr>
+                                @foreach (var item1 in detalle)
+                                {
+                                    <tr>
+                                        <td style="width: 100%;"><label class="letra">@item1.Cantidad - @item1.NomTar</label></td>
+                                        <td style="padding-left: 36px;width: 100%;"><label class="letra">@item1.PUnit</label></td>
+                                    </tr>
+                                }
+
+
+                            </table>
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-6"></div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <br />
+                    <div class="col-md-5" style="padding-right:0px">
+                        <table align="right">
+                            <tr>
+                                <td><label class="letra">Total S/.</label></td>
+                                <td style="padding-left: 36px;width: 100%;"><label class="letra">: @total</label></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-7">
+                        <br />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <br />
+                <div class="col-md-12">
+                    <div class="col-md-5" style="padding-right:0px">
+                        @{
+                            subtotal = total / decimal.Parse("1.18");
+                            igv = subtotal * decimal.Parse("0.18");
+                            totalg = subtotal + igv;
+                        }
+                        <table align="right">
+                            <tr>
+                                <td><label class="letra">Sub Total S/.</label></td>
+                                <td><label class="letra">: @subtotal.ToString("N2")</label></td>
+                            </tr>
+                            <tr>
+                                <td><label class="letra">IGV 18.00% S/.</label></td>
+                                <td><label class="letra">: @igv.ToString("N2")</label></td>
+                            </tr>
+                            <tr>
+                                <td><label class="letra">Total S/.</label></td>
+                                <td><label class="letra">: @totalg.ToString("N2")</label></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-3"></div>
     </div>
 
-    <div class="col-md-4"></div>
 </div>
 
+<div style="width:800px" align="justify" id="imprime">
 
 
 
-
-
-
-
+</div>
