@@ -383,8 +383,8 @@
                                             <select id="CodDist" name="CodDist" class="form-control select2">
                                                 @foreach (var fila in dist)
                                                 {
-                                                <option @{ if (fila.CodDist.Equals("D1277")) { @selected              } } value="@fila.CodDist">@fila.NomDist</option>
-    }
+                                                <option @{ if (fila.CodDist.Equals(ViewBag.coddistrito)) { @selected } } value="@fila.CodDist">@fila.NomDist</option>
+                                                 }
                                             </select>
                                             @Html.ValidationMessageFor(model => model.CodDist, "", new { @class = "text-danger" })
                                         </div>
@@ -866,6 +866,7 @@
                         $("#errorMessage1").text("Nro de dias " + restante).show();
                     }
                 });
+
         });
 
         $("#obsDisc").fadeOut();
@@ -942,12 +943,12 @@
             select.find('option').remove();
             $('<option>').val("").text("[NO SELECCIONADO]").appendTo(select);
             $.each(response, function (index, value) {
-                if (value.CodDist == 'D1277') {
-
+                if (value.CodDist == '@ViewBag.coddistrito') {
                     $('<option>').val(value.CodDist).text(value.NomDist).appendTo(select);
-                    $('#CodDist > option[value="D1277"]').attr('selected', true); 
+                    $('#CodDist > option[value="D1277"]').attr('selected', true);    
                 } else {
-                    $('<option>').val(value.CodDist).text(value.NomDist).appendTo(select);
+                   
+                    $('<option>').val('D1277').text(value.NomDist).appendTo(select);
                 }
             });
         });
