@@ -12,7 +12,7 @@ namespace VgSalud.Controllers
 {
     public class AccesoController : Controller
     {
-        //Actualizo12345   ----152-----ACTUALIZO
+        //Actualizo12345   ----152-----ACTUALIZO1
     
         public List<E_Acceso> ListaModulos(string CodUsu)
         {
