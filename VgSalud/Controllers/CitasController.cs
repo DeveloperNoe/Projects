@@ -1214,15 +1214,22 @@ namespace VgSalud.Controllers
                                         dd.ExecuteNonQuery();
 
                                         tr.Commit();
+                                        if (util.GENERARCUENTAAUTO)
+                                        {
+                                            return RedirectPermanent("~/Caja/RegistrarCaja?id=" + Resu);
+                                        }
+                                        else {
+                                            if (util.PREGXATENCIONPROGRAMADAS)
+                                            {
+                                                ViewBag.activaAlerta = 1;
+                                            }
+                                            else
+                                            {
+                                                return RedirectPermanent("~/Cuentas/VerificaCuenta/" + Resu);
+                                            }
+                                        }
 
-                                        if (util.PREGXATENCIONPROGRAMADAS)
-                                        {
-                                            ViewBag.activaAlerta = 1;
-                                        }
-                                        else
-                                        {
-                                           return RedirectPermanent("~/Cuentas/VerificaCuenta/" + Resu);
-                                        }
+                                  
                                         ViewBag.historia = c.Historia;
                                         ViewBag.cuenta = Resu;
                                     }

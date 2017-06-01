@@ -11,7 +11,7 @@ namespace VgSalud.Controllers
 {
     public class DatosGeneralesController : Controller
     {
-
+        //actualizar 1
         public List<E_Datos_Generales> listadatogenerales()
         {
             List<E_Datos_Generales> Lista = new List<E_Datos_Generales>();
@@ -202,21 +202,21 @@ namespace VgSalud.Controllers
                     }
                     else
                     {
-                        ViewBag.mensaje = "Error Datos no Precesisos";
+                        ViewBag.mensaje = "Error Datos no Precisos";
                         return View(Datos);
                     }
 
                 }
                 else
                 {
-                    ViewBag.mensaje = "Error Datos no Precesisos";
+                    ViewBag.mensaje = "Error Datos no Precisos";
                     return View(Datos);
                 }
 
             }
             catch (Exception ex)
             {
-                ViewBag.mensaje = "Error Datos no Precesisos";
+                ViewBag.mensaje = "Error Datos no Precisos";
                 return View(Datos);
             }
 

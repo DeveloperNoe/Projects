@@ -789,16 +789,22 @@ namespace VgSalud.Controllers
                                 }
                             }
                             tr.Commit();
-                          
-                            if (util.PREGXATENCIONPROGRAMADAS)
+                            if (util.GENERARCUENTAAUTO)
                             {
-                                ViewBag.activaAlerta = 1;
+                                return RedirectPermanent("~/Caja/RegistrarCaja?id=" + Resu);
                             }
                             else
                             {
-                                return RedirectPermanent("~/Cuentas/VerificaCuenta/" + Resu);
+                                if (util.PREGXATENCIONNOPROGRAMADAS)
+                                {
+                                    ViewBag.activaAlerta = 1;
+                                }
+                                else
+                                {
+                                    return RedirectPermanent("~/Cuentas/VerificaCuenta/" + Resu);
+                                }
                             }
-                        
+
                             ViewBag.historia = ate.Historia;
                             ViewBag.cuenta = Resu;
                         }
