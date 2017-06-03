@@ -18,9 +18,7 @@ namespace VgSalud.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        //actualizo
-        //123155353531535
-        //333
+      
         public AccountController()
         {
         }
