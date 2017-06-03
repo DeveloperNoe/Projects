@@ -866,7 +866,6 @@
                         $("#errorMessage1").text("Nro de dias " + restante).show();
                     }
                 });
-
         });
 
         $("#obsDisc").fadeOut();
@@ -946,7 +945,7 @@
                 if (value.CodDist == 'D1277') {
 
                     $('<option>').val(value.CodDist).text(value.NomDist).appendTo(select);
-                    $('#CodDist > option[value="D1277"]').attr('selected', true);
+                    $('#CodDist > option[value="D1277"]').attr('selected', true);  
                 } else {
                     $('<option>').val(value.CodDist).text(value.NomDist).appendTo(select);
                 }

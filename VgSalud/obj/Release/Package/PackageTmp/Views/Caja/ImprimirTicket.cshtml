@@ -5,19 +5,20 @@
     Layout = null;
     var cabecera = (List<VgSalud.Models.E_Caja>)ViewBag.cabecera;
     var detalle = (List<VgSalud.Models.E_CajaDetalle>)ViewBag.detalle;
-    decimal total = 0;
+    var paciente = (List<VgSalud.Models.E_Caja>)ViewBag.paciente;
+    decimal total = 0; ;
     decimal subtotal = 0; decimal igv = 0; decimal totalg = 0;
     var letra = "";
     var soles = "";
 }
 <style>
     .letra {
-        font-family: Consolas;
-        font-size: 12px;
+        font-family: 'Consolas';
+        font-size: 8px;
         font-style: normal;
         font-variant: normal;
         font-weight: 0;
-        line-height: 12px;
+        line-height: 11px;
     }
 </style>
 
@@ -82,10 +83,6 @@
                                 <td><label class="letra">Nro Serie</label></td>
                                 <td><label class="letra">: @item.Serie - N°@item.NumDoc</label></td>
                             </tr>
-                            <tr>
-                                <td><label class="letra">Paciente</label></td>
-                                <td><label class="letra">: @item.NomPac - (@item.Historia)</label></td>
-                            </tr>
                         </table>
 
                     }
@@ -116,7 +113,6 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <br />
                         <div class="col-md-3" style="padding-right:0px">
                         </div>
                         <div class="col-md-9" style="padding-right:0px">
@@ -130,7 +126,6 @@
                     </div>
                 </div>
                 <div class="row">
-                    <br />
                     <div class="col-md-12">
                         <div class="col-md-3" style="padding-right:0px">
                         </div>
@@ -160,6 +155,34 @@
                     <div class="col-md-12" style="border-bottom-style:dotted;">
                         <br /><br />
                         <label class="letra">@letra &nbsp; @soles</label>
+                    </div>
+  
+                </div>
+                <div class="row" style="border-bottom-style: dotted;">
+                    <div class="col-md-12" style="padding-right:0px">
+                        <table align="left">
+                            @foreach (var item3 in paciente)
+                            {
+                                <tr>
+                                    <td><label class="letra">Paciente</label></td>
+                                    <td><label class="letra">: @item3.NomPac</label></td>
+                                </tr>
+
+                                <tr>
+                                    <td><label class="letra">Edad</label></td>
+                                    <td><label class="letra">: @item3.Edad</label></td>
+                                </tr>
+                                <tr>
+                                    <td><label class="letra">Dni</label></td>
+                                    <td><label class="letra">: @item3.NumDoc</label></td>
+                                </tr>
+                                <tr>
+                                    <td><label class="letra">FecNac</label></td>
+                                    <td><label class="letra">: @item3.FecNac.ToShortDateString()</label></td>
+                                </tr>
+                            }
+
+                        </table>
                     </div>
                 </div>
             </div>

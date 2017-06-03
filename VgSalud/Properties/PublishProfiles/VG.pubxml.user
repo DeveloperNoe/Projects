@@ -229,7 +229,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/28/2015 04:04:30</publishTime>
     </File>
     <File Include="bin/VgSalud.dll">
-      <publishTime>06/03/2017 10:55:09</publishTime>
+      <publishTime>06/03/2017 11:58:57</publishTime>
     </File>
     <File Include="bin/VgSalud.dll.config">
       <publishTime>05/11/2017 10:36:28</publishTime>
@@ -3469,7 +3469,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/21/2017 16:24:32</publishTime>
     </File>
     <File Include="Views/Caja/ImprimirTicket.cshtml">
-      <publishTime>06/03/2017 10:42:20</publishTime>
+      <publishTime>06/03/2017 12:10:36</publishTime>
     </File>
     <File Include="Views/Caja/ListadoCaja.cshtml">
       <publishTime>04/17/2017 09:59:36</publishTime>
