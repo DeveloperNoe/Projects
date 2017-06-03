@@ -19,6 +19,7 @@ namespace VgSalud.Controllers
         private ApplicationUserManager _userManager;
 
         //actualizo
+        //
         public AccountController()
         {
         }
