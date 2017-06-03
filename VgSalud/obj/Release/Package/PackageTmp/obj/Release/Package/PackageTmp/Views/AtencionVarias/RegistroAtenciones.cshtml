@@ -30,7 +30,7 @@
         var cuenta = '@ViewBag.cuenta';
         $('#boton').attr("disabled", false);
         if (mensajito == 1)
-
+            $("#yaRegistro").css("display", "none");
             Command: toastr["success"]("¿Desea seguir agregando mas atenciones?<br /><br /><a href='../../AtencionVarias/RegistroAtenciones/?historia=" + historia + "&cuenta=" + cuenta + "' class='btn clear'>Si</a> <a href='../../Cuentas/VerificaCuenta/" + cuenta + "' class='btn clear'>No</a>", "Registro exitoso")
 
         toastr.options = {
@@ -57,7 +57,7 @@
 
 </script>
 
-<div class="content-wrapper">
+<div class="content-wrapper" >
     <section class="content-header">
         <h1>Atenciones Varias </h1>
         <ol class="breadcrumb">
@@ -65,7 +65,7 @@
             <li class="active">Registrar Atención</li>
         </ol>
     </section>
-    <section class="content">
+    <section class="content" id="yaRegistro">
         <div class="box box-default">
             <div class="box-header with-border">
                 <h3 class="box-title">Registrar Atención</h3>
@@ -105,7 +105,7 @@
 
             </div>
 
-            <div class="box-body">
+            <div class="box-body" >
 
                     <form method="post" action="~/AtencionVarias/AsignarAtencion">
                         <fieldset>
@@ -451,6 +451,7 @@
 
 
         $('#CodTar').change(function (event) {
+            debugger;
             var codTari = $("select#CodTar").val();
             $.get('@Url.Action("ObtenerPrecio", "AtencionVarias")', {
                 codTar: codTari, Historia: historia

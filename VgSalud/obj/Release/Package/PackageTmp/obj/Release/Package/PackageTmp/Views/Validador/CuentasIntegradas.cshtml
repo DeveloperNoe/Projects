@@ -174,10 +174,16 @@
 
 
                         <div class="col-md-6">
-
                             <fieldset>
-                                <legend style="margin-left: 28px;">Detalle</legend>
-
+                                <legend style="margin-left: 28px;">
+                                    <ol class="breadcrumb" style="margin-bottom: 0px; margin-left: 0px;padding-bottom: 0px;padding-top: 0px;margin-right: 250px;">
+                                        <li>Detalle</li>
+                                        <li>Paciente</li>
+                                        <li style="color:coral">@ViewBag.paciente</li>
+                                    </ol>
+                                
+                                 </legend>
+                           
 
                                 <div class="col-md-12">
                                     <br />
@@ -256,20 +262,15 @@
                             </fieldset>
 
                         </div>
+
                     </div>
-           
-
-
-
 
                     <div class="col-md-12">
                         <br /><br />
                         <div class="form-group">
                             <div class="col-md-12">
                                 <center>
-
                                     <button type="submit" value="2" name="Evento" class="btn btn-danger" style="background-color:#13D003; border:0" id="registrar">Registrar</button>
-
                                 </center>
                             </div>
                         </div>
@@ -294,10 +295,8 @@
         }
 
 
-
-
         $("#registrar").click(function () {
-            debugger;
+           
             var fecha = $("#fecha").val();
             var medico = $("#medico").val();
             var turno = $("#turno").val();
@@ -425,7 +424,7 @@
         var turno = "@ViewBag.turno";
 
         $("#medico").change(function () {
-            var medico = "@ViewBag.medico";
+              var medico = $("#medico").val();
 
             var servicio = $("#servicio").val();
             var turno = $("#turno").val();
@@ -622,7 +621,7 @@
 
     });
 
-   
+
 
 
 </script>

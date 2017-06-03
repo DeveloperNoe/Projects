@@ -17,7 +17,7 @@
     var meses = fecha_establecida.Month - fecha.Month;
     if (fecha_establecida.Year == fecha.Year && (fecha_establecida.Month == fecha.Month || meses == 1)) {
         TimeSpan ts = fecha_establecida - fecha;
-        day = Math.Abs(ts.Days);
+        day = ts.Days; 
     }
 
 
@@ -100,7 +100,7 @@
 <script>
 
     $(document).ready(function () {
-        debugger ;
+
         if(@day>1 && @day <=10) 
         {
             toastr.options = {

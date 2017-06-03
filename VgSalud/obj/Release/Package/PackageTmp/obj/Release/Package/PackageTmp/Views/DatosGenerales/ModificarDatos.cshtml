@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "ModificarDatos";
+    var listadistrito = (SelectList)ViewBag.listadistrito;
 }
 
 <div class="content-wrapper">
@@ -69,6 +70,19 @@
                             </div>
 
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <label>Distrito por Defecto</label>
+                                </div>
+                                <div class="col-md-9">
+
+                                    @Html.DropDownList("CodDist", listadistrito, "[NO SELECCIONADO]", new { @class = "form-control select2" })
+                                    @Html.ValidationMessageFor(model => model.CodDist, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
 
                     </fieldset>
 
@@ -99,6 +113,37 @@
 
                             </div>
                         </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+               
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <label>Mostrar mensaje seguir realizando Atenciones Programadas ?</label>
+                            </div>
+                            <div class="col-md-9">
+
+                                @Html.CheckBoxFor(model => model.PREGXATENCIONPROGRAMADAS)
+                            
+
+                            </div>
+                            <br /><br />
+                        </div>
+                        <br /><br />
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <label>Desea seguir realizando Atenciones No Programadas ?</label>
+                            </div>
+                            <div class="col-md-9">
+
+                                @Html.CheckBoxFor(model => model.PREGXATENCIONNOPROGRAMADAS)
+          
+
+                            </div>
+                        </div>
+           
+
 
                     </div>
 

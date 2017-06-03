@@ -2984,14 +2984,46 @@ namespace VgSalud.Controllers
 
         }
 
+        public List<E_Caja> Usp_CajaPaciente(int CodCaja)
+        {
+            List<E_Caja> Lista = new List<E_Caja>();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["VG_SALUD"].ConnectionString))
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand("Usp_Caja_InfoPaciente", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CodCaja", CodCaja);
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            E_Caja usu = new E_Caja();
+                            usu.Historia = dr.GetInt32(0);
+                            usu.NomPac = dr.GetString(1);
+                            usu.Edad = dr.GetInt32(2);
+                            usu.NumDoc = dr.GetString(3);
+                            usu.FecNac = dr.GetDateTime(4);  
+                            Lista.Add(usu);
+                        }
+                        con.Close();
+                    }
+
+                }
+                return Lista;
+            }
+        }
+
+
 
         public ActionResult ImprimirTicket(int CodCaja)
         {
             var cm = ImprimeCajaCabecera(CodCaja);
             var cd = ImprimeCajaDetalle(CodCaja);
-
-            //    Response.Write("<script language='JavaScript' type ='text/javascript'>" +
-            //" window.open('../../Cuentas/VerificaCuenta/" + c.CodCue + "', '_blank'); </script>");
+            var pac = Usp_CajaPaciente(CodCaja);
+            //    Response.Write("<script langu age='JavaScript' type ='text/javascript'>" +
+            //" window.open('../../Cuentas/VerificaCuenta/" + c.CodCue + "', '_blank'); </script>"); 
+            ViewBag.paciente = pac; 
             ViewBag.cabecera = cm;
             ViewBag.detalle = cd;
             return View();

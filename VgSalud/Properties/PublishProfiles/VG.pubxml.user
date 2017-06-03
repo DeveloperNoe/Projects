@@ -229,7 +229,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/28/2015 04:04:30</publishTime>
     </File>
     <File Include="bin/VgSalud.dll">
-      <publishTime>05/29/2017 14:05:14</publishTime>
+      <publishTime>06/03/2017 10:55:09</publishTime>
     </File>
     <File Include="bin/VgSalud.dll.config">
       <publishTime>05/11/2017 10:36:28</publishTime>
@@ -3460,13 +3460,16 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/17/2017 09:19:41</publishTime>
     </File>
     <File Include="Views/AtencionVarias/RegistroAtenciones.cshtml">
-      <publishTime>05/27/2017 10:25:29</publishTime>
+      <publishTime>05/29/2017 17:40:31</publishTime>
     </File>
     <File Include="Views/Caja/AutorizarAnulacion.cshtml">
       <publishTime>04/17/2017 09:59:00</publishTime>
     </File>
     <File Include="Views/Caja/DetalleCaja.cshtml">
       <publishTime>02/21/2017 16:24:32</publishTime>
+    </File>
+    <File Include="Views/Caja/ImprimirTicket.cshtml">
+      <publishTime>06/03/2017 10:42:20</publishTime>
     </File>
     <File Include="Views/Caja/ListadoCaja.cshtml">
       <publishTime>04/17/2017 09:59:36</publishTime>
@@ -3475,7 +3478,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/29/2017 10:10:44</publishTime>
     </File>
     <File Include="Views/Caja/RegistrarCaja.cshtml">
-      <publishTime>05/12/2017 15:35:27</publishTime>
+      <publishTime>05/30/2017 12:12:45</publishTime>
     </File>
     <File Include="Views/CategoriaPaciente/listaCategoriaCliente.cshtml">
       <publishTime>04/17/2017 09:36:15</publishTime>
@@ -3520,7 +3523,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/11/2017 10:09:46</publishTime>
     </File>
     <File Include="Views/Cuentas/EliminarCuenta.cshtml">
-      <publishTime>12/26/2016 10:28:34</publishTime>
+      <publishTime>06/01/2017 10:17:32</publishTime>
     </File>
     <File Include="Views/Cuentas/imprimeConsentimiento.cshtml">
       <publishTime>01/31/2017 11:21:14</publishTime>
@@ -3538,10 +3541,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/26/2017 10:14:53</publishTime>
     </File>
     <File Include="Views/DatosGenerales/ListarDatosGenerales.cshtml">
-      <publishTime>05/29/2017 09:43:41</publishTime>
+      <publishTime>06/01/2017 12:46:56</publishTime>
     </File>
     <File Include="Views/DatosGenerales/ModificarDatos.cshtml">
-      <publishTime>05/29/2017 10:57:25</publishTime>
+      <publishTime>06/01/2017 16:17:21</publishTime>
     </File>
     <File Include="Views/DatosGenerales/PermisosAdmin.cshtml">
       <publishTime>05/23/2017 17:45:38</publishTime>
@@ -3658,7 +3661,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/12/2017 14:35:54</publishTime>
     </File>
     <File Include="Views/Login/Index.cshtml">
-      <publishTime>05/18/2017 12:22:39</publishTime>
+      <publishTime>05/30/2017 17:08:56</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>11/15/2016 09:48:12</publishTime>
@@ -3730,7 +3733,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/16/2017 12:58:53</publishTime>
     </File>
     <File Include="Views/Pacientes/BusquedaPaciente.cshtml">
-      <publishTime>04/11/2017 12:51:34</publishTime>
+      <publishTime>06/01/2017 09:46:43</publishTime>
     </File>
     <File Include="Views/Pacientes/HistoriaPacienteXespecialidad.cshtml">
       <publishTime>05/03/2017 14:10:43</publishTime>
@@ -3748,7 +3751,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/25/2017 17:43:09</publishTime>
     </File>
     <File Include="Views/Pacientes/RegistrarPaciente.cshtml">
-      <publishTime>05/17/2017 09:55:00</publishTime>
+      <publishTime>06/01/2017 09:39:58</publishTime>
     </File>
     <File Include="Views/Pacientes/RegistroPaciente.cshtml">
       <publishTime>05/10/2017 17:19:15</publishTime>

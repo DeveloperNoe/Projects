@@ -554,6 +554,8 @@
         window.location = '../../Pacientes/ListaPacientes';
     }
 
+
+
     $(document).ready(function () {
 
 
@@ -611,7 +613,7 @@
 
             if(mensajito == 1){
                 $("#yaRegistro").css("display", "none");
-                Command: toastr["success"]("¿Desea Imprimir?<br /><br /><a onclick='funcionUno();funcionDos();' class='btn clear'>Si</a> <a href='../../Pacientes/ListaPacientes' class='btn clear'>No</a>", "Registro exitoso")
+                Command: toastr["success"]("¿Desea Imprimir?<br /><br /><a onclick='funcionUno();funcionDos();' class='btn clear1'>Si</a> <a href='../../Pacientes/ListaPacientes' class='btn clear2'>No</a>", "Registro exitoso")
 
                 toastr.options = {
                     "closeButton": false,
@@ -632,7 +634,6 @@
                     "tapToDismiss": false
                 }
             }
-
 
 
         $("#facturar").click(function () {

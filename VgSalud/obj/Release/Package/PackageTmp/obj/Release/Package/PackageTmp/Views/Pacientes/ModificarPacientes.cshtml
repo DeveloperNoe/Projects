@@ -979,14 +979,7 @@
             });
             $('#CodDist option[value="@Model.CodDist"]').attr('selected', true);
         });
-
-
-
         $('#TipSang option[value="@Model.TipSang"]').attr('selected', true);
-
-
-
-
         $('#CodPais').change(function (event) {
             var sports = $("select#CodPais").val();
             $.get('@Url.Action("ListaDepartamento", "Utilitario")', {
@@ -995,10 +988,13 @@
 
                 var select = $('#CodDep');
                 select.find('option').remove();
-                $('<option>').val("").text("Seleccione Deptartamento").appendTo(select);
+                $('<option>').val("NULL").text("[NO SELECCIONADO]").appendTo(select);
+                $("#select2-CodDep-container").text("");
                 $.each(response, function (index, value) {
                     $('<option>').val(value.CodDep).text(value.NomDep).appendTo(select);
                 });
+               
+
             });
         });
 
