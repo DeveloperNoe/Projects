@@ -1,4 +1,5 @@
 ﻿
+
 @{
     ViewBag.Title = "ImprimirTicket";
     Layout = null;
@@ -12,13 +13,14 @@
 <style>
     .letra {
         font-family: Consolas;
-        font-size: 14px;
+        font-size: 12px;
         font-style: normal;
         font-variant: normal;
         font-weight: 0;
-        line-height: 18.4px;
+        line-height: 12px;
     }
 </style>
+
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Ticket</title>
@@ -41,18 +43,18 @@
     <br /><br />
     <div class="col-md-12" style="padding-left:150px">
         <div class="col-md-3"></div>
-        <div class="col-md-6">
+        <div class="col-md-6" style="width: 283.464567px; height: 680.314961px;">
             <div class="row">
                 <div class="col-md-12">
-                    <table>
+                    <table align="center">
                         <tr>
-                            <td colspan="2" style="margin-left:15px"><label class="letra">Jr1313 Joaquín Valverde 299 (Av. San Borja sur 801)</label></td>
+                            <td colspan="2" style="margin-left:15px;" align="center"><label class="letra" style="margin-left:20px;">Jr. Joaquín Valverde 299<br>(Av. San Borja sur 801)</label></td>
                         </tr>
                         <tr>
-                            <td colspan="2"><label class="letra" style="margin-left: 100px;">R.U.C :12332142608</label></td>
+                            <td colspan="2" style="margin-left:15px" align="center"><label class="letra" style="margin-left:20px;">R.U.C.: 12332142608</label></td>
                         </tr>
                         <tr>
-                            <td colspan="2"><label class="letra" style="margin-left: 100px;">Telefono :2333222</label></td>
+                            <td colspan="2" style="margin-left:15px" align="center"><label class="letra" style="margin-left:20px;">Telefono: 2333222</label></td>
                         </tr>
                     </table>
                 </div>
@@ -60,7 +62,7 @@
                 {
                     letra = item.PrecioLetra;
                     soles = item.DescTipMon;
-                    <table>
+                    <table align="center">
                         <tr>
                             <td><label class="letra">Fecha</label></td>
                             <td><label class="letra">: @item.FechaEmision.ToShortDateString() - @item.HoraEmision</label></td>
@@ -84,23 +86,26 @@
                     </table>
 
                 }
+
                 <div class="col-md-12">
-                    <div class="col-md-6" style="border-bottom-style:dotted;border-top-style:dotted">
-                        <div class="row">
-                            <table align="center">
-                                <tr>
-                                    <td style="width: 100%;"><label class="letra">Cantid. Tarifas</label></td>
-                                    <td style="padding-left: 22px;width: 100%;"><label class="letra">Subtotal</label></td>
+                    <div class="col-md-6" style="padding:0px;">
+                        <div class="row" style="width:250px;">
+                            <table align="center" style="border-bottom-style:dotted;" width="280" cellpadding="2">
+                                <tr style="border-bottom-style:dotted;border-top-style:dotted;">
+                                    <td width="260" align="center"><label class="letra" style="margin-right:120px;">Cantid.Tarifas</label></td>
+                                    <td width="20" align="center"><label class="letra">Subtotal</label></td>
                                 </tr>
                                 @foreach (var item1 in detalle)
                                 {
-                                    <tr>
-                                        <td style="width: 100%;"><label class="letra">@item1.Cantidad - @item1.NomTar</label></td>
-                                        <td style="padding-left: 36px;width: 100%;"><label class="letra">@item1.PUnit</label></td>
+                                    <tr style="width:200px;">
+                                        <td width="260"><label class="letra">@item1.Cantidad - @item1.NomTar</label></td>
+                                        <td width="20"><label class="letra">@item1.PUnit</label></td>
                                     </tr>
                                     total += item1.PUnit;
                                 }
                             </table>
+
+
                         </div>
                     </div>
                     <div class="col-md-6"></div>
@@ -109,24 +114,24 @@
             <div class="row">
                 <div class="col-md-12">
                     <br />
-                    <div class="col-md-6" style="padding-right:0px">
+                    <div class="col-md-3" style="padding-right:0px">
+                    </div>
+                    <div class="col-md-9" style="padding-right:0px">
                         <table align="right">
                             <tr>
-                                <td>
-                                    <label class="letra">Total S/. :</label>
-                                </td>
+                                <td><label class="letra">Total S/. :</label></td>
                                 <td><label class="letra">@total</label></td>
                             </tr>
                         </table>
-                    </div>
-                    <div class="col-md-6">
                     </div>
                 </div>
             </div>
             <div class="row">
                 <br />
                 <div class="col-md-12">
-                    <div class="col-md-6" style="padding-right:0px">
+                    <div class="col-md-3" style="padding-right:0px">
+                    </div>
+                    <div class="col-md-9" style="padding-right:0px">
                         @{
                             subtotal = total / decimal.Parse("1.18");
                             igv = subtotal * decimal.Parse("0.18");
@@ -151,8 +156,23 @@
             </div>
         </div>
         <div class="col-md-3">
+
         </div>
     </div>
 </div>
-<div style="width:800px" align="justify" id="imprime">
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div style="width:800px" align="justify" id="imprime">
+
+    </div>*@
