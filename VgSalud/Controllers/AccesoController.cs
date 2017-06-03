@@ -12,9 +12,6 @@ namespace VgSalud.Controllers
 {
     public class AccesoController : Controller
     {
-        //Actualizo123
-        //ASDASD
-        //123
 
         public List<E_Acceso> ListaModulos(string CodUsu)
         {
