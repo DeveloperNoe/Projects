@@ -32,14 +32,12 @@ namespace VgSalud.Controllers
                 totalFact += Decimal.Parse(array1[7]);
             }
 
-
-
             String Tip = ""; string TipC = ""; string tipL = ""; string tipR = "";
             UtilitarioController ut = new UtilitarioController();
             var horaSis = (from x in ut.ListadoHoraServidor() select x).FirstOrDefault();
             string crea = Session["usuario"] + " " + horaSis.HoraServidor.ToString() + " " + Environment.MachineName;
             ServiciosController ser = new ServiciosController();
-            MedicosController me = new MedicosController(); 
+            MedicosController me = new MedicosController();
             var medico = (E_Medico)me.ListadoMedico().Where(x => x.CodMed == CodMed).FirstOrDefault();
             var codesp = (E_Servicios)ser.ListadoServicios().Where(x => x.CodServ == CodServ).FirstOrDefault();
             string sede = Session["codSede"].ToString();
@@ -141,7 +139,7 @@ namespace VgSalud.Controllers
                                     cmd.ExecuteNonQuery();
 
                                 }
-                                
+
                             }
                         }
                         tr.Commit();
@@ -149,7 +147,7 @@ namespace VgSalud.Controllers
                     catch (Exception e)
                     {
                         tr.Rollback();
-                        ViewBag.mensaje = "Error: " + e.Message;
+                        ViewBag.mensaje = "Error: Datos No Validos ";
 
                         return View(da);
                     }
@@ -239,7 +237,7 @@ namespace VgSalud.Controllers
             {
                 ViewBag.mensaje = "Llene todos los campos del formulario";
             }
-            
+
             return View();
         }
         public ActionResult RegistrarHonorariosMedicoMixto(string servicio = null, string medico = null, string fechaI = null, string fechaf = null, string TipoPago = null, string TipoCuenta = null, int? TipoRango = null, string fechaLiqui = null, int? TipoLiqui = null)
@@ -262,10 +260,11 @@ namespace VgSalud.Controllers
             {
                 ViewBag.fechaLiqui = reg.HoraServidor.ToShortDateString();
             }
-            else {
+            else
+            {
                 ViewBag.fechaLiqui = fechaLiqui;
             }
-            
+
 
             if (servicio != null && medico != null && fechaI != null && fechaf != null && TipoPago != null && TipoCuenta != null && TipoRango != null && fechaLiqui != null && TipoLiqui != null)
             {
@@ -282,10 +281,10 @@ namespace VgSalud.Controllers
                 ViewBag.fechaLiqui = fechaLiqui;
 
 
-                    DateTime fechaIParse = DateTime.Parse(fechaI);
-                    DateTime fechaFParse = DateTime.Parse(fechaf);
-                    fechaI = fechaIParse.ToString("dd/MM/yyyy");
-                    fechaf = fechaFParse.ToString("dd/M/yyyy");
+                DateTime fechaIParse = DateTime.Parse(fechaI);
+                DateTime fechaFParse = DateTime.Parse(fechaf);
+                fechaI = fechaIParse.ToString("dd/MM/yyyy");
+                fechaf = fechaFParse.ToString("dd/M/yyyy");
 
 
                 if (TipoRango == 1)
@@ -298,7 +297,8 @@ namespace VgSalud.Controllers
                 }
 
             }
-            else {
+            else
+            {
                 ViewBag.mensaje = "Llene todos los campos del formulario";
             }
 
@@ -379,29 +379,30 @@ namespace VgSalud.Controllers
                     {
                         while (dr.Read())
                         {
-                          
+
                             E_Honorario_Cabecera_Detalle HCD = new E_Honorario_Cabecera_Detalle();
                             var servicio = ser.ListadoServicios().Where(x => x.CodServ == dr.GetString(0)).FirstOrDefault();
                             var medico = med.ListadoMedico().Where(x => x.CodMed == dr.GetString(1)).FirstOrDefault();
-                            HCD.CodServ =  servicio.NomServ;
+                            HCD.CodServ = servicio.NomServ;
                             if (medico == null)
                             {
                                 HCD.CodMed = "--";
                             }
-                            else {
+                            else
+                            {
                                 HCD.CodMed = medico.NomMed;
-                            }                           
-                       
+                            }
+
                             HCD.TipoDoc = dr.GetString(2);
                             HCD.TipoPago = dr.GetString(3);
-                            HCD.FechaLiquidacion = dr.GetDateTime(4) ;
+                            HCD.FechaLiquidacion = dr.GetDateTime(4);
                             HCD.FechaInicio = dr.GetDateTime(5);
                             HCD.FechaFinal = dr.GetDateTime(6);
-                            HCD.TotalFac = dr.GetDecimal(7); 
+                            HCD.TotalFac = dr.GetDecimal(7);
                             HCD.CantTurno = dr.GetInt32(8);
                             HCD.PagoTotalTurno = dr.GetDecimal(9);
                             HCD.Total = dr.GetDecimal(10);
-                           
+
                             Lista.Add(HCD);
                         }
                         con.Close();
@@ -418,7 +419,7 @@ namespace VgSalud.Controllers
         {
             List<E_Honorario_Cabecera_Detalle> Lista = new List<E_Honorario_Cabecera_Detalle>();
             TarifarioController tar = new TarifarioController();
-      
+
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["VG_SALUD"].ConnectionString))
             {
                 con.Open();
@@ -431,9 +432,9 @@ namespace VgSalud.Controllers
                     {
                         while (dr.Read())
                         {
-                         
+
                             E_Honorario_Cabecera_Detalle HCD = new E_Honorario_Cabecera_Detalle();
-                         
+
                             HCD.CodCuenta = dr.GetInt32(0);
                             HCD.ItemCita = dr.GetInt32(1);
                             HCD.NroDocumentos = dr.GetInt32(2);
@@ -463,7 +464,7 @@ namespace VgSalud.Controllers
         public List<E_Honorario_Cabecera_Detalle> Usp_TotalTurnos(string cadena, string tipo)
         {
             List<E_Honorario_Cabecera_Detalle> Lista = new List<E_Honorario_Cabecera_Detalle>();
-            
+
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["VG_SALUD"].ConnectionString))
             {
                 con.Open();
@@ -479,7 +480,7 @@ namespace VgSalud.Controllers
                         {
                             //CodCue , item , NroDocumento , Tot_Tarifa , PorcentajeTarifa , APagar , FecAtencion , FecEmision , Tarifa , Cant , Turno
                             E_Honorario_Cabecera_Detalle HCD = new E_Honorario_Cabecera_Detalle();
-                            
+
                             HCD.TotalTurnos = dr.GetInt32(0);
                             HCD.fechaTur = dr.GetString(1);
                             HCD.Turno = dr.GetString(2);
@@ -693,13 +694,13 @@ namespace VgSalud.Controllers
             ho.TotalTurnos = cuenta.Count();
 
             List<E_Honorario_Cabecera_Detalle> Lista = new List<E_Honorario_Cabecera_Detalle>();
-            Lista.Add(ho);           
+            Lista.Add(ho);
 
             if (Lista.Count() != 0)
             {
                 return Json(Lista, JsonRequestBehavior.AllowGet);
             }
-            
+
             return null;
 
         }
@@ -793,7 +794,7 @@ namespace VgSalud.Controllers
         {
 
             MedicosController med = new MedicosController();
-            List<E_Medico> Lista = med.ListadoMedico().Where(x => x.CodServ == codserv && x.EstMed == true && x.EnLista==true).ToList();
+            List<E_Medico> Lista = med.ListadoMedico().Where(x => x.CodServ == codserv && x.EstMed == true && x.EnLista == true).ToList();
             if (Lista.Count() != 0)
             {
                 return Json(Lista, JsonRequestBehavior.AllowGet);
@@ -824,37 +825,37 @@ namespace VgSalud.Controllers
             return null;
         }
 
-        public ActionResult ListadeLiquidacion(string CodMed = null, string CodServ = null, string fechai=null, string fechaf=null)
+        public ActionResult ListadeLiquidacion(string CodMed = null, string CodServ = null, string fechai = null, string fechaf = null)
         {
             ServiciosController ser = new ServiciosController();
             MedicosController med = new MedicosController();
             if (CodMed == "") { CodMed = null; }
             if (CodServ == "") { CodServ = null; }
-            ViewBag.fechai = fechai; ViewBag.fechaf = fechaf; 
+            ViewBag.fechai = fechai; ViewBag.fechaf = fechaf;
             ViewBag.CodServ = ""; ViewBag.CodMed = "";
             ViewBag.ListaServicio = new SelectList(ser.ListadoServicios().Where(x => x.EstServ == true).ToList(), "CodServ", "NomServ");
             ViewBag.ListaMedico = new SelectList(med.ListadoMedico().Where(x => x.EstMed == true).ToList(), "CodMed", "NomMed");
             if (!string.IsNullOrWhiteSpace(CodMed))
             {
                 ViewBag.CodMed = CodMed;
-             
-        
+
+
                 ViewBag.medico = ListaLiquidacionXMedico(CodMed, fechai, fechaf);
 
             }
             else if (!string.IsNullOrWhiteSpace(CodServ))
             {
-                ViewBag.CodServ = CodServ; 
+                ViewBag.CodServ = CodServ;
                 ViewBag.servicio = ListaLiquidacionXServicio(CodServ, fechai, fechaf);
-             
+
             }
             else
             {
                 ViewBag.medico = null;
                 ViewBag.servicio = null;
-              
+
             }
-          
+
 
             return View();
 
@@ -863,14 +864,14 @@ namespace VgSalud.Controllers
         public ActionResult VerDetalleHonorarios(int? id = null)
         {
 
-           var cabecera = Usp_Lista_HonorarioCabeceraXId(id).FirstOrDefault();
+            var cabecera = Usp_Lista_HonorarioCabeceraXId(id).FirstOrDefault();
             ViewBag.detalle = Usp_Lista_HonorarioDetalleXId(id).ToList();
 
             return View(cabecera);
         }
 
 
-        public List<E_Honorario_Cabecera_Detalle> ListaLiquidacionXMedico(string Medico,string fechai , string fechaf)
+        public List<E_Honorario_Cabecera_Detalle> ListaLiquidacionXMedico(string Medico, string fechai, string fechaf)
         {
             List<E_Honorario_Cabecera_Detalle> Lista = new List<E_Honorario_Cabecera_Detalle>();
             MedicosController med = new MedicosController();
@@ -882,8 +883,8 @@ namespace VgSalud.Controllers
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@CodMed", Medico);
                     cmd.Parameters.AddWithValue("@CodSer", "");
-                    cmd.Parameters.AddWithValue("@fechai",fechai);
-                    cmd.Parameters.AddWithValue("@fechaf",fechaf);
+                    cmd.Parameters.AddWithValue("@fechai", fechai);
+                    cmd.Parameters.AddWithValue("@fechaf", fechaf);
                     cmd.Parameters.AddWithValue("@Evento", 2);
                     cnn.Open();
                     SqlDataReader dr = cmd.ExecuteReader();

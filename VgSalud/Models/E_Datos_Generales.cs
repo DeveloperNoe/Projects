@@ -7,7 +7,7 @@ namespace VgSalud.Models
 {
     public class E_Datos_Generales
     {
-
+        //actualizado 100
         public decimal igv { get; set; }
         public decimal Tipo_Cambio { get; set; }
         public bool MUESTRA_ANTECEDENTE { get; set; }

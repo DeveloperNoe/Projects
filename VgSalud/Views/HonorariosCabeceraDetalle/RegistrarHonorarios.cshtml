@@ -445,7 +445,7 @@
 
 
     $(document).on("ready", function () {
-
+        $("#SumaTotal").val('0.00');
         var medico = "@ViewBag.medico";
         var TipoLiqui = "@ViewBag.TipoLiqui";
 
@@ -465,12 +465,20 @@
                   $('#servicio option[value=@ViewBag.servicio]').prop('selected', 'selected').change();
               });
 
-                
+        $("#registrar").click(function () {
+            var valor = $("#SumaTotal").val();
+            if (valor != '0.00') {
 
+            }
+            else {
+
+            }
+        }); 
+        
 
         $('#Tipoc option[value=@ViewBag.tipoCuenta]').prop('selected', 'selected').change();
         $('#Tipop option[value=@ViewBag.tipoPago]').prop('selected', 'selected').change();
-
+        
     });
 
 

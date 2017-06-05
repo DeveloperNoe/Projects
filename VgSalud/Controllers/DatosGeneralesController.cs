@@ -11,7 +11,7 @@ namespace VgSalud.Controllers
 {
     public class DatosGeneralesController : Controller
     {
-        //actualizar 1
+        //actualizar 100
         public List<E_Datos_Generales> listadatogenerales()
         {
             List<E_Datos_Generales> Lista = new List<E_Datos_Generales>();
