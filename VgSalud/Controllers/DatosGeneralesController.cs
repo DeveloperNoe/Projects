@@ -225,15 +225,31 @@ namespace VgSalud.Controllers
 
         public ActionResult ListarDatosGenerales()
         {
-            var sede = Session["CodSede"].ToString(); 
-            ViewBag.distrito = LISTA_DISTRITO_DEFAULT(sede).FirstOrDefault().NomDist; 
+            var sede = Session["CodSede"].ToString();
+            var result = LISTA_DISTRITO_DEFAULT(sede);
+            if (result.Count > 0)
+            {
+                ViewBag.distrito = result.FirstOrDefault().NomDist;
+            }
+            else
+            {
+                ViewBag.distrito = "[NO SELECCIONADO]";
+            }
             return View(listadatogenerales());
         }
 
         public ActionResult ModificarDatos(string igv, string tipo)
         {
             var sede = Session["CodSede"].ToString();
-            ViewBag.coddist = LISTA_DISTRITO_DEFAULT(sede).FirstOrDefault().CodDist;
+            var result = LISTA_DISTRITO_DEFAULT(sede);
+            if (result.Count > 0)
+            {
+                ViewBag.distrito = result.FirstOrDefault().NomDist;
+            }
+            else
+            {
+                ViewBag.distrito = "[NO SELECCIONADO]";
+            }
             var lista = (from x in listadatogenerales() where x.igv == Convert.ToDecimal(igv) && x.Tipo_Cambio == Convert.ToDecimal(tipo) select x).FirstOrDefault();
             ViewBag.listadistrito = new SelectList(new UtilitarioController().ListadoDistrito("P0128"), "CodDist", "NomDist", ViewBag.coddist);
 
@@ -244,8 +260,16 @@ namespace VgSalud.Controllers
         public ActionResult ModificarDatos(E_Datos_Generales dat)
         {
             var sede = Session["CodSede"].ToString();
-
-            ViewBag.coddist = LISTA_DISTRITO_DEFAULT(sede).FirstOrDefault().CodDist;
+            var result = LISTA_DISTRITO_DEFAULT(sede);
+            if (result.Count > 0)
+            {
+                ViewBag.coddist = LISTA_DISTRITO_DEFAULT(sede).FirstOrDefault().CodDist;
+            }
+            else
+            {
+                ViewBag.distrito = "[NO SELECCIONADO]";
+            }
+     
             ViewBag.listadistrito = new SelectList(new UtilitarioController().ListadoDistrito("P0128"), "CodDist", "NomDist", ViewBag.coddist);
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["VG_SALUD"].ConnectionString.ToString()))
             {
