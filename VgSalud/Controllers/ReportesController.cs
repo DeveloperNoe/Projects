@@ -178,8 +178,6 @@ namespace VgSalud.Controllers
             }
         }
 
-
-
         public List<E_Caja> ListaFacturaxUsuario(string CodUsu, DateTime FechaI, DateTime FechaF, TimeSpan HoraI, TimeSpan HoraF)
         {
             List<E_Caja> Lista = new List<E_Caja>();
@@ -1265,8 +1263,6 @@ namespace VgSalud.Controllers
 
             return File(rendereBytes, mimeType);
         }
-
-
         public List<E_Reporte> Usp_Reporte_Nuevos_Continuadores(string FechaI = null, string FechaF = null)
         {
 
@@ -1469,9 +1465,12 @@ namespace VgSalud.Controllers
                         Servicio = "T";
 
                     }
+                    else {
+                        Servicio = $"{item},";
+                    }
                     if (cuenta == 1)
                     {
-                        Servicio = item;
+                       
                         if (item == "") { servicioV += "[TODOS]"; } else { var ser = (new ServiciosController()).ListadoServicios().Where(x => x.CodServ == item.ToString()).FirstOrDefault(); servicioV += $" - {ser.NomServ.ToUpper()}"; }
                     }
                     else
@@ -1786,9 +1785,12 @@ namespace VgSalud.Controllers
                         Servicio = "T";
 
                     }
+                    else {
+                        Servicio += $"{item},"; 
+                    }
                     if (cuenta == 1)
                     {
-                        Servicio = item;
+                   
                         if (item == "") { servicioV += "[TODOS]"; } else { var ser = s.ListadoServicios().Where(x => x.CodServ == item.ToString()).FirstOrDefault(); servicioV += ser.NomServ; }
                     }
                     else
@@ -1810,6 +1812,7 @@ namespace VgSalud.Controllers
                         Medico = "T";
                         break;
                     }
+
                     if (cuenta == 1)
                     {
                         Medico = item;
@@ -2048,9 +2051,12 @@ namespace VgSalud.Controllers
                         Servicio = "T";
 
                     }
+                    else {
+                        Servicio += $"{item},";
+                    }
                     if (cuenta == 1)
                     {
-                        Servicio = item;
+                       
                         if (item == "") { servicioV += "[TODOS]"; } else { var ser = (new ServiciosController()).ListadoServicios().Where(x => x.CodServ == item.ToString()).FirstOrDefault(); servicioV += ser.NomServ.ToString(); }
                     }
                     else
@@ -2072,9 +2078,12 @@ namespace VgSalud.Controllers
                         servicioV += "[TODOS]";
                         break;
                     }
+                    else {
+                        Medico += $"{item},";
+                    }
                     if (cuenta == 1)
                     {
-                        Medico = item;
+                      
                         if (item == "T") { medicoV += "[TODOS]"; } else { var med = (new MedicosController()).ListadoMedico().Where(x => x.CodMed == item.ToString()).FirstOrDefault(); medicoV += med.NomMed.ToString(); }
                     }
                     else

@@ -642,7 +642,7 @@ namespace VgSalud.Controllers
                             ca.PrecioLetra = dr.GetString(29);
                             ca.Edad = dr.GetInt32(30);
                             ca.FecNac = dr.GetDateTime(31);
-                            ca.Ruc = dr.GetString(32);
+                            ca.Ruc =  dr["Ruc"] is DBNull ? string.Empty : dr["Ruc"].ToString();
 
                             Lista.Add(ca);
                         }
@@ -726,7 +726,8 @@ namespace VgSalud.Controllers
         public List<E_DocumentoSerie> ListadoCorrelativoMuestra(string CodSerie)
         {
             List<E_DocumentoSerie> Lista = new List<E_DocumentoSerie>();
-            if (!string.IsNullOrWhiteSpace(CodSerie)) {
+            if (!string.IsNullOrWhiteSpace(CodSerie))
+            {
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["VG_SALUD"].ConnectionString))
                 {
                     con.Open();
@@ -749,7 +750,7 @@ namespace VgSalud.Controllers
                         }
 
                     }
-                 
+
                 }
             }
             return Lista;
@@ -820,6 +821,32 @@ namespace VgSalud.Controllers
             }
         }
 
+        public List<E_UsuarioSerie> usp_Ticket_TipoDoc(int CodCaja)
+        {
+            List<E_UsuarioSerie> Lista = new List<E_UsuarioSerie>();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["VG_SALUD"].ConnectionString))
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand("usp_Ticket_TipoDoc", con))
+                {
+                    cmd.Parameters.AddWithValue("@CodCaja", CodCaja);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            E_UsuarioSerie usu = new E_UsuarioSerie();
+                            usu.Etiqueta = dr.GetString(0);
+                            usu.CodDocCont = dr.GetInt32(1);
+                            Lista.Add(usu);
+                        }
+                        con.Close();
+                    }
+
+                }
+                return Lista;
+            }
+        }
 
         public ActionResult RegistrarCaja(int id, string ruc = null, string cadena = null)
         {
@@ -982,6 +1009,7 @@ namespace VgSalud.Controllers
         [HttpPost]
         public ActionResult RegistrarCaja(E_Caja c)
         {
+            int Resu = 0; 
             string sede = Session["codSede"].ToString();
             string usuario = Session["UserID"].ToString();
             UtilitarioController u = new UtilitarioController();
@@ -1105,7 +1133,7 @@ namespace VgSalud.Controllers
                                     ca.Parameters.AddWithValue("@Elimina", "");
                                     ca.Parameters.AddWithValue("@Evento", "1");
 
-                                    int Resu = (int)ca.ExecuteScalar();
+                                    Resu = (int)ca.ExecuteScalar();
                                     CodCaja = Resu;
 
                                     using (SqlCommand cue = new SqlCommand("Usp_MtoCuentas", con, tr))
@@ -1274,7 +1302,7 @@ namespace VgSalud.Controllers
                                 ca.Parameters.AddWithValue("@Elimina", "");
                                 ca.Parameters.AddWithValue("@Evento", "1");
 
-                                int Resu = (int)ca.ExecuteScalar();
+                                Resu = (int)ca.ExecuteScalar();
                                 CodCaja = Resu;
 
                                 using (SqlCommand cue = new SqlCommand("Usp_MtoCuentas", con, tr))
@@ -1374,6 +1402,7 @@ namespace VgSalud.Controllers
                                     }
 
                                 }
+
                             }
                         }
 
@@ -1393,7 +1422,7 @@ namespace VgSalud.Controllers
                     ViewBag.CodigoCajita = CodCaja;
                     ViewBag.activaAlerta = 1;
 
-                    return View(c);
+                    return RedirectPermanent("~/Caja/ImprimirTicket?CodCaja=" + Resu);
 
                 }
 
@@ -1555,7 +1584,7 @@ namespace VgSalud.Controllers
                             cmd.Parameters.AddWithValue("@Direccion", c.DirRazSocA.ToUpper());
                             cmd.Parameters.AddWithValue("@Estado", "");
                             cmd.Parameters.AddWithValue("@Evento", "1");
-                            int Resu = (int)cmd.ExecuteScalar();
+                            Resu = (int)cmd.ExecuteScalar();
                             codigo = Resu;
                             ViewBag.mensaje = "Se registro correctamente";
 
@@ -1983,18 +2012,19 @@ namespace VgSalud.Controllers
                 }
                 else
                 {
-                    it = cajj.item+1;
+                    it = cajj.item + 1;
                 }
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["VG_SALUD"].ConnectionString))
                 {
                     E_Caja eva = ListaCajaPecioTotal((int)Detalle).FirstOrDefault();
                     E_Caja evaPago = ListaCajaPagoTotal((int)Detalle).FirstOrDefault();
-                    decimal tot=0;
+                    decimal tot = 0;
                     if (evaPago == null)
                     {
                         tot = 0;
                     }
-                    else {
+                    else
+                    {
                         tot = evaPago.Total;
                     }
                     decimal total = tot + (decimal)monto;
@@ -2071,7 +2101,7 @@ namespace VgSalud.Controllers
                     tot = evaPago.Total;
                 }
                 if (eva.Total != tot)
-                { 
+                {
                     ViewBag.mensaje = "Los montos no equivalen al total de caja";
                 }
                 else
@@ -2101,7 +2131,7 @@ namespace VgSalud.Controllers
 
                 var listaCajaPreResumen = (List<E_Caja>)CajaPreResumen(usuario, fec1.ToShortDateString(), fec2.ToShortDateString()).Where(x => x.CodSede == sede && x.FechaEmision >= validaFecha).ToList();
                 var listaCajaPreResumenDetalle = (List<E_Caja>)CajaPreResumenDetalle(usuario, fec1.ToShortDateString(), fec2.ToShortDateString()).Where(x => x.CodSede == sede).ToList();
-                
+
                 int cuenta = 0;
                 decimal diferencia = 0;
 
@@ -2242,7 +2272,7 @@ namespace VgSalud.Controllers
                     }
 
                 }
-                
+
                 ViewBag.mensaje = "Registro exitoso";
 
                 ViewBag.CajaPreResumen = (List<E_Caja>)CajaPreResumen(usuario, fec1.ToShortDateString(), fec2.ToShortDateString()).Where(x => x.CodSede == sede && x.FechaEmision >= validaFecha).ToList();
@@ -2330,7 +2360,7 @@ namespace VgSalud.Controllers
             var validaFecha = hor.HoraServidor.AddDays(-1);
             ViewBag.mediosPago = new SelectList(ListadoMedioPago().ToList(), "CODMEDIOS", "DESCRIPCION");
             ViewBag.pago = null;
-            
+
             ViewBag.Hoy = hor.HoraServidor.ToString("dd/MM/yyyy");
             ViewBag.usuario = usuario;
 
@@ -2687,7 +2717,7 @@ namespace VgSalud.Controllers
 
             }
 
-            
+
 
             ViewBag.Hoy = hor.HoraServidor.ToString("dd/MM/yyyy");
 
@@ -3003,7 +3033,7 @@ namespace VgSalud.Controllers
                             usu.NomPac = dr.GetString(1);
                             usu.Edad = dr.GetInt32(2);
                             usu.NumDoc = dr.GetString(3);
-                            usu.FecNac = dr.GetDateTime(4);  
+                            usu.FecNac = dr.GetDateTime(4);
                             Lista.Add(usu);
                         }
                         con.Close();
@@ -3013,22 +3043,52 @@ namespace VgSalud.Controllers
                 return Lista;
             }
         }
+        public List<E_Servicios> Usp_DetalleServicioTicket(int CodCaja)
+        {
+            List<E_Servicios> Lista = new List<E_Servicios>();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["VG_SALUD"].ConnectionString))
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand("Usp_ImprimeTicketDetalle", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CodCaja", CodCaja);
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            E_Servicios ser = new E_Servicios();
+                            ser.CodServ = dr.GetString(0);
+                            ser.NomServ = dr.GetString(1);
+                            Lista.Add(ser);
+                        }
+                        con.Close();
+                    }
 
-
+                }
+                return Lista;
+            }
+        }
 
         public ActionResult ImprimirTicket(int CodCaja)
         {
             var cm = ImprimeCajaCabecera(CodCaja);
             var cd = ImprimeCajaDetalle(CodCaja);
             var pac = Usp_CajaPaciente(CodCaja);
+            var ser = Usp_DetalleServicioTicket(CodCaja).FirstOrDefault();
+            var Doc = usp_Ticket_TipoDoc(CodCaja);
             //    Response.Write("<script langu age='JavaScript' type ='text/javascript'>" +
             //" window.open('../../Cuentas/VerificaCuenta/" + c.CodCue + "', '_blank'); </script>"); 
-            ViewBag.paciente = pac; 
+            var DatosGenerales = new DatosGeneralesController().Getdatogenerales();
+            ViewBag.DatosGenerales = DatosGenerales; 
+            ViewBag.TipoDoc = Doc; 
+            ViewBag.paciente = pac;
             ViewBag.cabecera = cm;
             ViewBag.detalle = cd;
+            ViewBag.servicio = ser.NomServ;
             return View();
         }
-        
+
         public ActionResult ImprimirCaja(string id, int CodCaja)
         {
 

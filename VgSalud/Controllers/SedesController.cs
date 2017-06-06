@@ -173,87 +173,8 @@ namespace VgSalud.Controllers
                 return Lista;
             }
         }
-        public ActionResult EliminarSedes(string id)
-        {
-            string Elimina = Session["usuario"] + " " + DateTime.Now + " " + Environment.MachineName;
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["VG_SALUD"].ConnectionString))
-            {
-                con.Open();
-                using (SqlCommand cmd = new SqlCommand("Usp_MtoSedes",con))
-                {
-                    try
-                    {
-                        cmd.Parameters.AddWithValue("@CodSede", id);
-                        cmd.Parameters.AddWithValue("@NomSede", "");
-                        cmd.Parameters.AddWithValue("@DireccSede", "");
-                        cmd.Parameters.AddWithValue("@TelfSede", "");
-                        cmd.Parameters.AddWithValue("@EstSede", true);
-                        cmd.Parameters.AddWithValue("@Crea", "");
-                        cmd.Parameters.AddWithValue("@Modifica", "");
-                        cmd.Parameters.AddWithValue("@Elimina", Elimina);
-                        cmd.Parameters.AddWithValue("@Idcc", "");
-                        cmd.Parameters.AddWithValue("@Evento", 3);
-                        cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.ExecuteNonQuery();
-                        cmd.Dispose();
-                        ViewBag.mensaje = "Se elimino correctamente";
-                    }
-                    catch (Exception ex)
-                    {
 
-                        ViewBag.mensaje = "Ocurrio algún error al eliminar" + ex.Message.ToString();
-                    }
-                    finally
-                    {
-                        con.Close();
-                    }
-
-                }
-                return RedirectToAction("ListaSedes");
-
-            }
-        }
-        public ActionResult ActivarSedes(string id)
-        {
-            string Activa = Session["usuario"] + " " + DateTime.Now + " " + Environment.MachineName;
-
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["VG_SALUD"].ConnectionString))
-            {
-                con.Open();
-                using (SqlCommand cmd = new SqlCommand("Usp_MtoSedes",con))
-                {
-                    try
-                    {
-                        cmd.Parameters.AddWithValue("@CodSede",id);
-                        cmd.Parameters.AddWithValue("@NomSede","");
-                        cmd.Parameters.AddWithValue("@DireccSede","");
-                        cmd.Parameters.AddWithValue("@TelfSede","");
-                        cmd.Parameters.AddWithValue("@EstSede",true);
-                        cmd.Parameters.AddWithValue("@Crea","");
-                        cmd.Parameters.AddWithValue("@Modifica",Activa);
-                        cmd.Parameters.AddWithValue("@Elimina","");
-                        cmd.Parameters.AddWithValue("@Idcc","");
-                        cmd.Parameters.AddWithValue("@Evento",4);
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        cmd.ExecuteNonQuery();
-                        cmd.Dispose();
-                        ViewBag.mensaje = "Se activo correctamente";
-                    }
-                    catch (Exception ex)
-                    {
-                        ViewBag.mensaje = "Ocurrio algún error al activar" + ex.Message.ToString();
-                    }
-                    finally
-                    {
-                        con.Close();
-                    }
-                }
-                return RedirectToAction("ListaSedes");
-
-            }
-        }
 
 
 

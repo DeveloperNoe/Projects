@@ -156,9 +156,9 @@
                                                 <tr>
                                                     <td>@Html.DisplayFor(modelItem => item1.IdC)</td>
                                                     <td>@Html.DisplayFor(modelItem => item1.CodMed)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item1.FechaLiquidacion)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item1.FechaInicio)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item1.FechaFinal)</td>
+                                                    <td>@item1.FechaLiquidacion.ToShortDateString()</td>
+                                                    <td>@item1.FechaInicio.ToShortDateString()</td>
+                                                    <td>@item1.FechaFinal.ToShortDateString()</td>
                                                     <td>@Html.DisplayFor(modelItem => item1.TipoDoc)</td>
                                                     <td>@Html.DisplayFor(modelItem => item1.Total)</td>
                                                     <td>

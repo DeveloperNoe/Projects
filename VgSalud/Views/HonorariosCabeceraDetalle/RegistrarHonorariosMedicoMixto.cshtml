@@ -389,13 +389,10 @@
                                     <input type="hidden" name="FechaFinal" value="@ViewBag.fechaF" />
 
                                     <div class="col-md-offset-5">
-                                        <button type="submit" class="btn btn-danger" id="registrar" name="Registrar">Registrar</button>
+                                        <button type="submit" class="btn btn-danger" id="registrar" name="Registrar" style="background-color:#13D003; border:#13D003;">Registrar</button>
                                         <a href="#" onclick="history.back();return false" class="btn btn-info">Cancelar</a>
-
                                     </div>
-
                                 }
-
                             </div>
 
 
@@ -427,6 +424,7 @@
             for (i = 0; i < document.formulario1.length; i++) {
                 if ((document.formulario1.elements[i].id) == "marca") {
                     document.formulario1.elements[i].checked = true;
+                    $("#registrar").attr("disabled", false);
                 }
             }
         }
@@ -434,7 +432,7 @@
             for (i = 0; i < document.formulario1.length; i++) {
                 if ((document.formulario1.elements[i].id) == "marca") {
                     document.formulario1.elements[i].checked = false;
-
+                    $("#registrar").attr("disabled", true);
                 }
             }
         }
@@ -454,7 +452,7 @@
             var dame = $("#marca").val();
             valor = dame.split('|');
             $("#SumaTotal").val(parseFloat(valor[9]));
-
+            $("#registrar").attr("disabled", true);
         }
         else {
             var totalSumado = 0.00;
@@ -468,22 +466,24 @@
                 }
             }
             $("#SumaTotal").val(totalSumado.toFixed(2));
+            var sumar = $("#SumaTotal").val();
+            if (sumar == '0.00') {
+                $("#registrar").attr("disabled", true);
+            }
+            else {
+                $("#registrar").attr("disabled", false);
+            }
         }
      
     }
 
 
     function sumarGroup() {
-      
-
-
         obj = document.formulario1['arreglo'];
 
         totalChecks = obj.length;
         var codMed = "@ViewBag.medico";
         var totalTurno = 0;
-
-
 
         if (totalChecks == null) {
             $("#IdDemo1").val("0");
@@ -519,7 +519,14 @@
 
     $(document).on("ready", function () {
 
-
+        $("#SumaTotal").val('0.00');
+        var sumar = $("#SumaTotal").val();
+        if (sumar == '0.00') {
+            $("#registrar").attr("disabled", true);
+        }
+        else {
+            $("#registrar").attr("disabled", false);
+        }
         var medico = "@ViewBag.medico";
         var TipoLiqui = "@ViewBag.TipoLiqui";
 
@@ -607,7 +614,6 @@
                     if (obj[i].checked == true) {
                         valor = obj[i].value.split('|');
                         concatena = concatena + valor[20] + ",";
-
                     }
                 }
                 $.get('@Url.Action("GroupVFinal", "HonorariosCabeceraDetalle")', { cadena: concatena, tipo: tipoR },

@@ -72,8 +72,8 @@
                                                         <div class="col-md-6">
                                                             <label class="col-md-3">Liquidar por</label>
                                                             <div class="col-md-3" id="porcentaje">
-                                                                <label><input type="radio" name="TipoLiqui" id="porcen" value="1" @if (ViewBag.TipoLiqui == 1) { @marca         ; } checked>Porcentaje</label>
-                                                            </div>                                                            
+                                                                <label><input type="radio" name="TipoLiqui" id="porcen" value="1" @if (ViewBag.TipoLiqui == 1) { @marca          ; } checked>Porcentaje</label>
+                                                            </div>
                                                         </div>
 
                                                     </div>
@@ -132,7 +132,7 @@
                                                                     <div class="form-group">
                                                                         <label>
                                                                             <input type="radio" id="TipoRango" value="1" name="TipoRango"
-                                                                                   @if (ViewBag.tipoRango == 1) { @marca  ; }>Fecha de Atencion
+                                                                                   @if (ViewBag.tipoRango == 1) { @marca   ; }>Fecha de Atencion
                                                                         </label>
                                                                     </div>
 
@@ -141,7 +141,7 @@
                                                                     <div class="form-group">
                                                                         <label>
                                                                             <input type="radio" id="TipoRango" value="2" name="TipoRango"
-                                                                                   @if (ViewBag.tipoRango == 2) { @marca  ; }>Fecha de Pago
+                                                                                   @if (ViewBag.tipoRango == 2) { @marca   ; }>Fecha de Pago
                                                                         </label>
                                                                     </div>
 
@@ -393,11 +393,11 @@
 <script>
 
     function marcarTodos() {
-        debugger;
         if (document.formulario1.todos.checked) {
             for (i = 0; i < document.formulario1.length; i++) {
                 if ((document.formulario1.elements[i].id) == "marca") {
                     document.formulario1.elements[i].checked = true;
+                    $("#registrar").attr("disabled", false);
                 }
             }
         }
@@ -405,17 +405,18 @@
             for (i = 0; i < document.formulario1.length; i++) {
                 if ((document.formulario1.elements[i].id) == "marca") {
                     document.formulario1.elements[i].checked = false;
+                    $("#registrar").attr("disabled", true);
 
                 }
             }
         }
 
-            sumar();
+        sumar();
     }
 
 
     function sumar() {
-        
+        debugger;
         obj = document.formulario1['arreglo'];
         totalChecks = obj.length;
 
@@ -424,7 +425,7 @@
             var dame = $("#marca").val();
             valor = dame.split('|');
             $("#SumaTotal").val(parseFloat(valor[9]));
-
+            $("#registrar").attr("disabled", true);
         }
         else {
             var totalSumado = 0.00;
@@ -434,17 +435,22 @@
                     valor = obj[i].value.split('|');
                     totalSumado = totalSumado + parseFloat(valor[9]);
                     indice++;
-
                 }
             }
             $("#SumaTotal").val(totalSumado.toFixed(2));
+            var sumar = $("#SumaTotal").val();
+            if (sumar == '0.00') {
+                $("#registrar").attr("disabled", true);
+            }
+            else {
+                $("#registrar").attr("disabled", false);
+            }
+           
         }
     }
 
-
-
-
     $(document).on("ready", function () {
+        $("#registrar").attr("disabled", true);
         $("#SumaTotal").val('0.00');
         var medico = "@ViewBag.medico";
         var TipoLiqui = "@ViewBag.TipoLiqui";
@@ -465,20 +471,9 @@
                   $('#servicio option[value=@ViewBag.servicio]').prop('selected', 'selected').change();
               });
 
-        $("#registrar").click(function () {
-            var valor = $("#SumaTotal").val();
-            if (valor != '0.00') {
-
-            }
-            else {
-
-            }
-        }); 
-        
-
         $('#Tipoc option[value=@ViewBag.tipoCuenta]').prop('selected', 'selected').change();
         $('#Tipop option[value=@ViewBag.tipoPago]').prop('selected', 'selected').change();
-        
+
     });
 
 
