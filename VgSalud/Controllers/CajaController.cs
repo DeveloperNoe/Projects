@@ -838,6 +838,7 @@ namespace VgSalud.Controllers
                             E_UsuarioSerie usu = new E_UsuarioSerie();
                             usu.Etiqueta = dr.GetString(0);
                             usu.CodDocCont = dr.GetInt32(1);
+                            usu.CodUsu = $"{dr["Nombre"].ToString()}";
                             Lista.Add(usu);
                         }
                         con.Close();

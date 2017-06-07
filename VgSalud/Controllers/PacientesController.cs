@@ -278,7 +278,7 @@ namespace VgSalud.Controllers
 
             ViewBag.ListaDepartamento = new SelectList(Uti.ListadoDepartamentoSimple(), "CodDep", "NomDep");
             ViewBag.ListaProvincia = new SelectList(Uti.ListadoProvinciaSimple(), "CodProv", "NomProv");
-            ViewBag.ListaDistrito = new SelectList(Uti.ListadoDistritoSimple(), "CodDist", "NomDist");
+     
 
             ViewBag.depa = (List<E_Departamento>)Uti.ListadoDepartamentoSimple();
             ViewBag.prov = (List<E_Provincia>)Uti.ListadoProvinciaSimple();
@@ -287,6 +287,7 @@ namespace VgSalud.Controllers
             ViewBag.ListaUsuario = new SelectList(ListadoUsuarioPaciente(), "CodigoUsuario", "AliasUsu");
 
             var lista = (from x in ListadoPacientes() where x.Historia == Id select x).FirstOrDefault();
+            ViewBag.ListaDistrito = new SelectList(Uti.ListadoDistritoSimple(), "CodDist", "NomDist",lista.CodDist);
             ViewBag.fechaNac = lista.FecNac.ToShortDateString();
             return View(lista);
 

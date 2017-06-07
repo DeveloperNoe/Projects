@@ -41,7 +41,8 @@ namespace VgSalud.Controllers
                             }
                             datos.PREGXATENCIONPROGRAMADAS = dr["PREGXATENCIONPROGRAMADAS"] is DBNull ? false : Convert.ToBoolean(dr["PREGXATENCIONPROGRAMADAS"]);
                             datos.PREGXATENCIONNOPROGRAMADAS = dr["PREGXATENCIONNOPROGRAMADAS"] is DBNull ? false : Convert.ToBoolean(dr["PREGXATENCIONNOPROGRAMADAS"]);
-                            datos.GENERARCUENTAAUTO = dr["GENERARCUENTAAUTO"] is DBNull ? false : Convert.ToBoolean(dr["GENERARCUENTAAUTO"]); 
+                            datos.GENERARCUENTAAUTO = dr["GENERARCUENTAAUTO"] is DBNull ? false : Convert.ToBoolean(dr["GENERARCUENTAAUTO"]);
+                            datos.MOSTRARPACIENTETICKET = dr["MOSTRARPACIENTETICKET"] is DBNull ? false : Convert.ToBoolean(dr["MOSTRARPACIENTETICKET"].ToString());
                             Lista.Add(datos);
                         }
                         con.Close();
@@ -108,7 +109,8 @@ namespace VgSalud.Controllers
                             get.PREGXATENCIONPROGRAMADAS = dr["PREGXATENCIONPROGRAMADAS"] is DBNull ? false : Convert.ToBoolean(dr["PREGXATENCIONPROGRAMADAS"]);
                             get.PREGXATENCIONNOPROGRAMADAS = dr["PREGXATENCIONNOPROGRAMADAS"] is DBNull ? false : Convert.ToBoolean(dr["PREGXATENCIONNOPROGRAMADAS"]);
                             get.GENERARCUENTAAUTO = dr["GENERARCUENTAAUTO"] is DBNull ? false : Convert.ToBoolean(dr["GENERARCUENTAAUTO"]);
-
+                            get.GENERARCUENTAAUTO = dr["GENERARCUENTAAUTO"] is DBNull ? false : Convert.ToBoolean(dr["GENERARCUENTAAUTO"]);
+                            get.MOSTRARPACIENTETICKET = dr["MOSTRARPACIENTETICKET"] is DBNull ? false : Convert.ToBoolean(dr["MOSTRARPACIENTETICKET"].ToString());
                         }
                         con.Close();
                     }
@@ -245,6 +247,7 @@ namespace VgSalud.Controllers
             if (result.Count > 0)
             {
                 ViewBag.distrito = result.FirstOrDefault().NomDist;
+                ViewBag.coddist = result.FirstOrDefault().CodDist;
             }
             else
             {
@@ -285,7 +288,8 @@ namespace VgSalud.Controllers
                         da.Parameters.AddWithValue("@ATENCIONESPAGADAS", dat.ATENCIONESPAGADAS);
                         da.Parameters.AddWithValue("@ATENCIONPROGRAMADAS", dat.PREGXATENCIONPROGRAMADAS);
                         da.Parameters.AddWithValue("@ATENCIONNOPROGRAMADAS", dat.PREGXATENCIONNOPROGRAMADAS);
-                        da.Parameters.AddWithValue("@GENERARCUENTAAUTO", dat.GENERARCUENTAAUTO); 
+                        da.Parameters.AddWithValue("@GENERARCUENTAAUTO", dat.GENERARCUENTAAUTO);
+                        da.Parameters.AddWithValue("@MOSTRARPACIENTETICKET", dat.MOSTRARPACIENTETICKET);
                         if (da.ExecuteNonQuery() > 0)
                         {
                             using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["VG_SALUD"].ConnectionString))

@@ -15,27 +15,20 @@
     var RazonSocial = "";
     var Ruc = "";
     var DirecRazon = "";
-    var sede = ""; 
+    var sede = "";
+    var tipoDoc = "";
+    var Cajero = ""; 
 }
 
 
 
 <head>
     <title>Ticket</title>
-
+    <link rel="stylesheet" href="~/Content/Styles/bootstrap.min.css">
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Content/Scripts/jquery.PrintArea.js"></script>
-    <script>
-        $(document).ready(function () {
-            var ancho = $(window).width();
-            var alto = $(window).height();
 
-            var options = { mode: "popup", popHt: alto, popWd: ancho, popX: 0, popY: 0, popTitle: "Ticket", popClose: false };
-            $("div#imprime").printArea(options);
-
-        });
-    </script>
     <style type="text/css">
         body {
             margin-left: 0px;
@@ -63,7 +56,13 @@
             RazonSocial = item.RazonSocial;
             DirecRazon = item.DirRazSoc;
         }
+        foreach (var item in Doc) {
+            tipoDoc += item.Etiqueta;
+            Cajero += item.CodUsu; 
+        }
+
    }
+    
     <div id="imprime" style="width: 300px;font-family: Consolas;
             font-size: 11px;">
         <p align="center">
@@ -77,32 +76,32 @@
             @foreach (var item in cabecera)
             {
                 <tr>
-                    <td colspan="3">Bol N°@item.NumDoc - @item.Serie</td>
+                    <td colspan="3">@tipoDoc - N°@item.NumDoc</td>
                 </tr>
                 <tr>
                     <td width="80">Fecha</td>
-                    <td width="10">: @item.FechaEmision.ToShortDateString() - @item.HoraEmision</td>
-                    <td>&nbsp;</td>
+                    <td width="10">:</td>
+                    <td>@item.FechaEmision.ToShortDateString() - @item.HoraEmision</td>
                 </tr>
                 <tr>
                     <td>Cajero(a)</td>
-                    <td>: @item.UsuCrea</td>
-                    <td>&nbsp;</td>
+                    <td>:</td>
+                    <td>@Cajero</td>
                 </tr>
                 <tr>
                     <td>Secuencia</td>
-                    <td>: @item.CodCaja</td>
-                    <td>&nbsp;</td>
+                    <td>:</td>
+                    <td>@item.CodCaja</td>
                 </tr>
                 <tr>
                     <td>Servicio</td>
-                    <td>: @ViewBag.servicio</td>
-                    <td>&nbsp;</td>
+                    <td>:</td>
+                    <td>@ViewBag.servicio</td>
                 </tr>
                 <tr>
                     <td>Cuenta</td>
-                    <td>: @item.CodCue</td>
-                    <td>&nbsp;</td>
+                    <td>: </td>
+                    <td>@item.CodCue</td>
                 </tr>
 
             }
@@ -126,7 +125,7 @@
                 <tr>
                     <td>@item1.Cantidad</td>
                     <td>@item1.NomTar</td>
-                    <td align="right">12.00</td>
+                    <td align="right">@item1.PUnit</td>
                 </tr>
 
 
@@ -169,7 +168,7 @@
                 <td colspan="3"></td>
             </tr>
         </table>
-
+        <br />
         @if (DatosGenerales.MOSTRARPACIENTETICKET)
         {
             foreach (var item1 in Doc)
@@ -232,6 +231,23 @@
                 }
             }
         }
-
+        <p align="center">
+           GRACIAS POR SU VISITA<br />
+        </p>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            var ancho = $(window).width();
+            var alto = $(window).height();
+
+            var options = { mode: "popup", popHt: alto, popWd: ancho, popX: 0, popY: 0, popTitle: "Ticket", popClose: false };
+            $("div#imprime").printArea(options);
+            $("#imprime").fadeOut();
+            
+            window.location.href = '../Pacientes/ListaPacientes';
+        });
+    </script>
+
+
 </body>

@@ -156,8 +156,10 @@ namespace VgSalud.Controllers
                             }
                             else
                             {
+                               
                                 ModelState.AddModelError("", "Datos invalidos!");
                             }
+                            ViewBag.validation = "Error Datos Invalidos!!!"; 
                             return View(user);
 
 
@@ -165,6 +167,7 @@ namespace VgSalud.Controllers
                         else
                         {
                             ModelState.AddModelError("", "Datos invalidos!");
+                            ViewBag.validation = "Error Autenticacion Invalida!!!";
                             return View(user);
                         }
                     }
@@ -191,6 +194,7 @@ namespace VgSalud.Controllers
                 }
                 else
                 {
+                    ViewBag.validation = "Error Datos Invalidos!!!";
                     ModelState.AddModelError("", "Datos invalidos!");
                     return View(user);
                 }
@@ -199,6 +203,7 @@ namespace VgSalud.Controllers
             else
             {
                 ModelState.AddModelError("", "La Fecha de Licencia ah Expirado");
+                ViewBag.validation = "La Fecha de Licencia ah Expirado!!!";
                 return View(user);
 
             }

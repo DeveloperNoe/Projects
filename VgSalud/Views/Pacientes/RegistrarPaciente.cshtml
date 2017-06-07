@@ -19,7 +19,8 @@
     var depa = (List<VgSalud.Models.E_Departamento>)ViewBag.depa;
     var prov = (List<VgSalud.Models.E_Provincia>)ViewBag.prov;
     var dist = (List<VgSalud.Models.E_Distrito>)ViewBag.Dist;
-
+    var coddist = ViewBag.coddistrito;
+    if (String.IsNullOrWhiteSpace(coddist) ) { coddist = "D1248"; }
     var ListaUsuario = (SelectList)ViewBag.ListaUsuario;
 }
 
@@ -381,12 +382,9 @@
                                         <div class="col-md-9">
 
                                             <select id="CodDist" name="CodDist" class="form-control select2">
-                                                @foreach (var fila in dist)
-                                                {
-                                                <option @{ if (fila.CodDist.Equals("D1277")) { @selected              } } value="@fila.CodDist">@fila.NomDist</option>
-    }
+          }
                                             </select>
-                                            @Html.ValidationMessageFor(model => model.CodDist, "", new { @class = "text-danger" })
+                                       
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -942,19 +940,16 @@
             select.find('option').remove();
             $('<option>').val("").text("[NO SELECCIONADO]").appendTo(select);
             $.each(response, function (index, value) {
-                if (value.CodDist == 'D1277') {
-
+                if (value.CodDist == "@coddist") {
                     $('<option>').val(value.CodDist).text(value.NomDist).appendTo(select);
-                    $('#CodDist > option[value="D1277"]').attr('selected', true);  
+                    $('#CodDist option[value=' + "@coddist" + ']').prop("selected", "selected");
+                    $('#select2-CodDist-container').text(value.NomDist);
                 } else {
                     $('<option>').val(value.CodDist).text(value.NomDist).appendTo(select);
                 }
             });
         });
-
-
-
-
+     
 
         $('#CodPais').change(function (event) {
             var sports = $("select#CodPais").val();
@@ -1008,6 +1003,9 @@
                 });
             });
         });
+
+
+
         $(document).ready(function () {
             var ALT = 18; var G = 71; var presiono1 = false;
             $(document).keydown(function (e) {

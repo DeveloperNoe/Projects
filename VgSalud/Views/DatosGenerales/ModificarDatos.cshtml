@@ -68,15 +68,7 @@
                                 </div>
 
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-3">
-                                    <label>Mostrar paciente en ticket?</label>
-                                </div>
-                                <div class="col-md-9">
-                                    @Html.CheckBoxFor(model => model.MOSTRARPACIENTETICKET)
-                                    @Html.ValidationMessageFor(model => model.MOSTRARPACIENTETICKET, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
+            
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -116,7 +108,16 @@
 
                             </div>
                         </div>
-
+                        <br /><br />
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <label>Mostrar paciente en ticket?</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.CheckBoxFor(model => model.MOSTRARPACIENTETICKET)
+                                @Html.ValidationMessageFor(model => model.MOSTRARPACIENTETICKET, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-md-6">
