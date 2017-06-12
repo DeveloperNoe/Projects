@@ -49,9 +49,6 @@ namespace VgSalud.Controllers
                 return Lista;
             }
         }
-
-
-        
         public ActionResult listaUsuario()
         {
 
@@ -77,7 +74,6 @@ namespace VgSalud.Controllers
         
         public ActionResult RegistraUsuario()
         {
-
             return View();
         }
 
@@ -135,8 +131,6 @@ namespace VgSalud.Controllers
             var lista = (from x in listaUsuarios() where x.codUsu.Equals(id) select x).FirstOrDefault();
             return View(lista);
         }
-
-
         [HttpPost]
         public ActionResult ModificarUsuario(E_Usuario usu)
         {
@@ -377,12 +371,9 @@ namespace VgSalud.Controllers
                     ViewBag.mensaje = "Error no se pudo ingresar";
                     return false;
                 }
-
-
             }
 
         }
-
 
         public JsonResult IsValidadoPassword( string alias = null, string Pass=null) {
             

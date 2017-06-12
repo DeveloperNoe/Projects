@@ -438,7 +438,7 @@ namespace VgSalud.Controllers
                             }
                             catch (Exception e)
                             {
-                                ViewBag.mensaje = "Error: " + e.Message;
+                                ViewBag.mensaje = "Error: Datos No Validos!!!";
                             }
                             finally { con.Close(); }
                         }
@@ -1260,8 +1260,6 @@ namespace VgSalud.Controllers
                     ViewBag.mensaje = "Error: la Cita ya fue Reservada";
                 
                 }
-         
-
             }
 
             MedicosController me = new MedicosController();
@@ -1272,16 +1270,12 @@ namespace VgSalud.Controllers
             ViewBag.TarifaDefault = espec.CodTar;
             try
             {
-                
                 E_Pacientes reg = pa.ListadoPacientes().Find(x => x.Historia == c.Historia);
                 E_Especialidades reg1 = es.ListadoEspecialidades().Find(x => x.CodEspec == c.CodEspec);
                 E_Servicios reg2 = ser.ListadoServicios().Find(x => x.CodServ == c.CodServ);
                 E_Categoria_Paciente reg3 = caP.listadoCategoriaCliente().Find(x => x.CodCatPac == reg.CodCatPac);
 
-
                 var evaluaTipo = (List<E_Citas>)ListadoCitas().Where(x => x.CodServ == c.CodServ && x.Historia == c.Historia).ToList();
-
-
 
                 if (evaluaTipo.Count() != 0)
                 {
@@ -1307,7 +1301,7 @@ namespace VgSalud.Controllers
             }
             catch (Exception e)
             {
-                ViewBag.mensaje = "Error " + e.Message;
+                ViewBag.mensaje = "Error Datos no Validos!!!";
             }
             
             return View(c);           
@@ -1355,7 +1349,6 @@ namespace VgSalud.Controllers
 
                         if (c.CodCue == 0)
                         {
-
                             da.Parameters.AddWithValue("@CodCue", "");
                             da.Parameters.AddWithValue("@CodSede", reg2.CodSede);
                             da.Parameters.AddWithValue("@Historia", c.Historia);
@@ -1676,9 +1669,7 @@ namespace VgSalud.Controllers
                 }
 
             }
-
             return RedirectPermanent("ListadoDeCitas/?servicio=" + c.CodServ + "&especialidad=" + c.CodEspec + "&fecha=" + c.fechaCita + "&turno=" + c.Turno);
-
         }
 
 

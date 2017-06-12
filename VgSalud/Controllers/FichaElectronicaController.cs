@@ -3056,15 +3056,10 @@ namespace VgSalud.Controllers
                         }
                     }
                 }
-
                 return RedirectToAction("PerfilFichaElectronica");
-
             }
 
         }
-
-        
-
 
         public ActionResult PerfilConsentimiento(int? idPFA = null)
         {
@@ -3266,8 +3261,6 @@ namespace VgSalud.Controllers
 
         }
 
-        
-
         public ActionResult ObtenerTarifa(string CodEsp)
         {
             string sede = Session["codSede"].ToString();
@@ -3279,7 +3272,6 @@ namespace VgSalud.Controllers
             }
             return null;
         }
-
 
         public List<E_Ficha_Electronica> ListaFichaElectronica(int Historia, string CodServ)
         {
@@ -3360,9 +3352,6 @@ namespace VgSalud.Controllers
                 return Lista;
             }
         }
-
-
-
 
         public List<E_Ficha_Electronica> ListaDiagnostico(int FE, int Procedencia)
         {

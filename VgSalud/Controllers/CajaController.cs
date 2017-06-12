@@ -39,7 +39,6 @@ namespace VgSalud.Controllers
 
             return codigo;
         }
-
         public List<E_Medios_Pago> ListadoMedioPago()
         {
             List<E_Medios_Pago> Lista = new List<E_Medios_Pago>();
@@ -68,7 +67,6 @@ namespace VgSalud.Controllers
                 return Lista;
             }
         }
-
         public List<E_Caja> ListaCajaPago()
         {
             List<E_Caja> Lista = new List<E_Caja>();
@@ -358,7 +356,6 @@ namespace VgSalud.Controllers
             }
         }
 
-
         public List<E_Caja> ListadoCajaCabecera()
         {
             List<E_Caja> Lista = new List<E_Caja>();
@@ -417,8 +414,6 @@ namespace VgSalud.Controllers
                 return Lista;
             }
         }
-
-
         public List<E_Caja> ListadoCajaGeneral(string CodUsu, string fechaE, string fechaS)
         {
             List<E_Caja> Lista = new List<E_Caja>();
@@ -722,7 +717,6 @@ namespace VgSalud.Controllers
             }
         }
 
-
         public List<E_DocumentoSerie> ListadoCorrelativoMuestra(string CodSerie)
         {
             List<E_DocumentoSerie> Lista = new List<E_DocumentoSerie>();
@@ -820,7 +814,6 @@ namespace VgSalud.Controllers
                 return Lista;
             }
         }
-
         public List<E_UsuarioSerie> usp_Ticket_TipoDoc(int CodCaja)
         {
             List<E_UsuarioSerie> Lista = new List<E_UsuarioSerie>();
@@ -1587,13 +1580,13 @@ namespace VgSalud.Controllers
                             cmd.Parameters.AddWithValue("@Evento", "1");
                             Resu = (int)cmd.ExecuteScalar();
                             codigo = Resu;
-                            ViewBag.mensaje = "Se registro correctamente";
+                            ViewBag.mensaje = "1";
 
 
                         }
                         catch (Exception ex)
                         {
-                            ViewBag.Mensaje = "Ocurrio algun error al registrar : " + ex.Message.ToString();
+                            ViewBag.Mensaje = "Error Datos no Validos";
                             return View();
                         }
                         finally
@@ -1613,7 +1606,6 @@ namespace VgSalud.Controllers
             return View(c);
 
         }
-
 
         public ActionResult Añadir(E_CajaPago c)
         {
@@ -1700,7 +1692,6 @@ namespace VgSalud.Controllers
 
         }
 
-
         public ActionResult Delete(E_CajaPago c)
         {
 
@@ -1715,7 +1706,6 @@ namespace VgSalud.Controllers
 
             return RedirectPermanent("RegistrarCaja/?id=" + c.CodCue + "&cadena=" + cadena);
         }
-
 
         public ActionResult RegistrarPersonaJuridica(E_PersonaJuridica e)
         {
@@ -1785,7 +1775,6 @@ namespace VgSalud.Controllers
             }
         }
 
-
         public ActionResult ObtenerSerie(string CodSerie)
         {
             var evalua = (List<E_DocumentoSerie>)ListadoCorrelativo(CodSerie).ToList();
@@ -1796,7 +1785,6 @@ namespace VgSalud.Controllers
             return null;
         }
 
-
         public ActionResult ObtenerSerieMuestra(string CodSerie)
         {
             var evalua = (List<E_DocumentoSerie>)ListadoCorrelativoMuestra(CodSerie).ToList();
@@ -1806,7 +1794,6 @@ namespace VgSalud.Controllers
             }
             return null;
         }
-
 
         public ActionResult AutorizarAnulacion(int? CodCaja = null)
         {
@@ -1826,8 +1813,7 @@ namespace VgSalud.Controllers
 
             return View();
         }
-
-
+        
         public ActionResult DetalleCaja(int id)
         {
 
@@ -1915,7 +1901,6 @@ namespace VgSalud.Controllers
             return RedirectPermanent("AutorizarAnulacion?CodCaja=" + c.CodCaja);
 
         }
-
 
         public ActionResult ListadoCaja(string fechaE = null, string fechaS = null, int? CodCaja = null, int? Elimina = null, int? Evento = null, int? Detalle = null, string moneda = null, decimal? monto = null, decimal[] array = null, string FecDeposito = null)
         {
@@ -2330,8 +2315,6 @@ namespace VgSalud.Controllers
             }
 
         }
-
-
 
         public ActionResult ListadoCajaAdmin(string fechaE = null, string fechaS = null, string CodUsu = null, int? Elimina = null, int? Evento = null, int? Detalle = null, string moneda = null, decimal? monto = null, decimal[] array = null, string FecDeposito = null)
         {
@@ -2905,7 +2888,6 @@ namespace VgSalud.Controllers
             return null;
 
         }
-
 
         public ActionResult EliminarCaja(int id)
         {
