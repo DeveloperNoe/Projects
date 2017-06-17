@@ -342,7 +342,7 @@ namespace VgSalud.Controllers
                     }
                     catch (Exception e)
                     {
-                        ViewBag.mensaje = "Error: " + e.Message;
+                        ViewBag.mensaje = "Error:Datos No Validos";
 
                         return View(acc);
                     }

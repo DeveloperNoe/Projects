@@ -40,7 +40,7 @@ namespace VgSalud.Models
         
         public string    TelfCel    { get; set; }
        
-        public int       CodTipPac  { get; set; }
+        public int?       CodTipPac  { get; set; }
      
         public string    Observ         { get; set; }
        
